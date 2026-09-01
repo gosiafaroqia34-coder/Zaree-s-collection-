@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zaree Collection | Beauty Store</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#fffafc;
+    color:#222;
+}
+
+/* HEADER */
+
+header{
+    background:#ffffff;
+    padding:16px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#c2185b;
+}
+
+nav{
+    display:flex;
+    gap:22px;
+}
+
+nav a{
+    color:#333;
+    text-decoration:none;
+    font-size:15px;
+}
+
+nav a:hover{
+    color:#c2185b;
+}
+
+.cart-btn{
+    border:0;
+    background:#c2185b;
+    color:white;
+    padding:10px 16px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+    min-height:470px;
+    padding:70px 7%;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(120deg,#fff0f5,#fde3ed);
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.hero h1{
+    font-size:50px;
+    line-height:1.15;
+    margin-bottom:18px;
+}
+
+.hero h1 span{
+    color:#c2185b;
+}
+
+.hero p{
+    color:#666;
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:28px;
+}
+
+.shop-btn{
+    display:inline-block;
+    background:#c2185b;
+    color:white;
+    padding:14px 25px;
+    border-radius:7px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* SECTION */
+
+.section{
+    padding:55px 6%;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:32px;
+}
+
+.title h2{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.title p{
+    color:#777;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.category{
+    background:white;
+    padding:30px 20px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.category:hover{
+    transform:translateY(-4px);
+}
+
+.category-icon{
+    font-size:55px;
+    margin-bottom:14px;
+}
+
+.category h3{
+    font-size:21px;
+    margin-bottom:7px;
+}
+
+.category p{
+    color:#777;
+}
+
+/* PRODUCTS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+}
+
+.product{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.product-image{
+    height:230px;
+    background:#f8e9ef;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:70px;
+}
+
+.product-info{
+    padding:18px;
+}
+
+.product-info h3{
+    margin-bottom:8px;
+}
+
+.price{
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.old-price{
+    color:#999;
+    text-decoration:line-through;
+    font-size:14px;
+    margin-left:5px;
+}
+
+select{
+    width:100%;
+    padding:9px;
+    margin-top:5px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    background:white;
+}
+
+.option-label{
+    display:block;
+    font-size:14px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.add-btn{
+    width:100%;
+    padding:12px;
+    margin-top:14px;
+    border:0;
+    border-radius:7px;
+    background:#c2185b;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    background:#a3154e;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.feature{
+    background:white;
+    text-align:center;
+    padding:30px 20px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.feature-icon{
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.feature p{
+    color:#777;
+    margin-top:7px;
+}
+
+/* CART */
+
+.cart-panel{
+    display:none;
+    position:fixed;
+    right:0;
+    top:0;
+    width:380px;
+    max-width:100%;
+    height:100%;
+    background:white;
+    z-index:2000;
+    box-shadow:-5px 0 20px rgba(0,0,0,.2);
+    padding:22px;
+    overflow-y:auto;
+}
+
+.cart-panel.open{
+    display:block;
+}
+
+.cart-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.close-btn{
+    border:0;
+    background:#eee;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.cart-item{
+    border-bottom:1px solid #eee;
+    padding:14px 0;
+}
+
+.cart-item strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+.remove-btn{
+    margin-top:7px;
+    border:0;
+    background:#eee;
+    padding:6px 10px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.cart-total{
+    font-size:20px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.checkout-btn{
+    width:100%;
+    padding:13px;
+    border:0;
+    background:#c2185b;
+    color:white;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* CHECKOUT */
+
+.checkout{
+    display:none;
+    max-width:600px;
+    margin:20px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.checkout.show{
+    display:block;
+}
+
+.checkout h2{
+    margin-bottom:20px;
+}
+
+.checkout input,
+.checkout textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #ddd;
+    border-radius:6px;
+}
+
+.checkout textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.place-order{
+    width:100%;
+    padding:13px;
+    border:0;
+    background:#c2185b;
+    color:white;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:40px 6%;
+}
+
+footer p{
+    color:#bbb;
+    margin:8px 0;
+}
+
+.copyright{
+    margin-top:20px;
+    padding-top:18px;
+    border-top:1px solid #444;
+    color:#888;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .categories,
+    .features{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    header{
+        justify-content:center;
+    }
+
+    nav{
+        justify-content:center;
+        gap:13px;
+    }
+
+    .hero{
+        text-align:center;
+        padding:55px 6%;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .cart-panel{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        Zaree <span>Collection</span>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="cart-btn" onclick="openCart()">
+        🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Discover Your
+            <span>Beauty</span>
+        </h1>
+
+        <p>
+            Welcome to Zaree Collection.
+            Discover makeup, skincare, fragrances
+            and beauty essentials at affordable prices.
+        </p>
+
+        <a href="#products" class="shop-btn">
+            Shop Now
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+    <div class="title">
+        <h2>Shop By Category</h2>
+        <p>Find your favorite beauty products</p>
+    </div>
+
+    <div class="categories">
+
+        <div class="category" onclick="filterProducts('Makeup')">
+            <div class="category-icon">💄</div>
+            <h3>Makeup</h3>
+            <p>Lipsticks, foundation & more</p>
+        </div>
+
+        <div class="category" onclick="filterProducts('Skincare')">
+            <div class="category-icon">🧴</div>
+            <h3>Skincare</h3>
+            <p>Care for beautiful skin</p>
+        </div>
+
+        <div class="category" onclick="filterProducts('Fragrance')">
+            <div class="category-icon">🌸</div>
+            <h3>Fragrances</h3>
+            <p>Beautiful everyday fragrances</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="section" id="products">
+
+    <div class="title">
+        <h2>Featured Products</h2>
+        <p>Our latest beauty collection</p>
+    </div>
+
+    <div class="products">
+
+
+        <!-- PRODUCT 1 -->
+
+        <div class="product" data-category="Makeup">
+
+            <div class="product-image">
+                💄
+            </div>
+
+            <div class="product-info">
+
+                <h3>Matte Lipstick</h3>
+
+                <div class="price">
+                    Rs. 899
+                    <span class="old-price">Rs. 1,099</span>
+                </div>
+
+                <label class="option-label">
+                    Color
+                </label>
+
+                <select id="color1">
+                    <option>Red</option>
+                    <option>Pink</option>
+                    <option>Nude</option>
+                    <option>Berry</option>
+                </select>
+
+                <button class="add-btn"
+                    onclick="addProduct('Matte Lipstick',899,'color1')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+
+        <div class="product" data-category="Skincare">
+
+            <div class="product-image">
+                🧴
+            </div>
+
+            <div class="product-info">
+
+                <h3>Face Moisturizer</h3>
+
+                <div class="price">
+                    Rs. 1,499
+                    <span class="old-price">Rs. 1,799</span>
+                </div>
+
+                <label class="option-label">
+                    Size
+                </label>
+
+                <select id="size2">
+                    <option>50ml</option>
+                    <option>100ml</option>
+                    <option>150ml</option>
+                </select>
+
+                <button class="add-btn"
+                    onclick="addProduct('Face Moisturizer',1499,'size2')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+
+        <div class="product" data-category="Fragrance">
+
+            <div class="product-image">
+                🌸
+            </div>
+
+            <div class="product-info">
+
+                <h3>Floral Perfume</h3>
+
+                <div class="price">
+                    Rs. 2,199
+                    <span class="old-price">Rs. 2,599</span>
+                </div>
+
+                <label class="option-label">
+                    Size
+                </label>
+
+                <select id="size3">
+                    <option>30ml</option>
+                    <option>50ml</option>
+                    <option>100ml</option>
+                </select>
+
+                <button class="add-btn"
+                    onclick="addProduct('Floral Perfume',2199,'size3')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 4 -->
+
+        <div class="product" data-category="Makeup">
+
+            <div class="product-image">
+                💋
+            </div>
+
+            <div class="product-info">
+
+                <h3>Glossy Lip Gloss</h3>
+
+                <div class="price">
+                    Rs. 749
+                    <span class="old-price">Rs. 899</span>
+                </div>
+
+                <label class="option-label">
+                    Color
+                </label>
+
+                <select id="color4">
+                    <option>Clear</option>
+                    <option>Pink</option>
+                    <option>Peach</option>
+                    <option>Rose</option>
+                </select>
+
+                <button class="add-btn"
+                    onclick="addProduct('Glossy Lip Gloss',749,'color4')">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="section">
+
+    <div class="title">
+        <h2>Why Shop With Us?</h2>
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🚚
+            </div>
+
+            <h3>Fast Delivery</h3>
+
+            <p>
+                Reliable delivery service.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                💵
+            </div>
+
+            <h3>Cash on Delivery</h3>
+
+            <p>
+                Pay when your order arrives.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ⭐
+            </div>
+
+            <h3>Quality Products</h3>
+
+            <p>
+                Quality beauty products.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CHECKOUT -->
+
+<section class="section">
+
+    <div class="checkout" id="checkout">
+
+        <h2>Customer Details</h2>
+
+        <input
+            id="customerName"
+            type="text"
+            placeholder="Full Name">
+
+        <input
+            id="customerPhone"
+            type="tel"
+            placeholder="Phone Number">
+
+        <input
+            id="customerCity"
+            type="text"
+            placeholder="City">
+
+        <textarea
+            id="customerAddress"
+            placeholder="Complete Delivery Address"></textarea>
+
+        <button
+            class="place-order"
+            onclick="placeOrder()">
+
+            Place Order on WhatsApp
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- CART -->
+
+<div class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+
+        <h2>Your Cart</h2>
+
+        <button
+            class="close-btn"
+            onclick="closeCart()">
+
+            ✕
+
+        </button>
+
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+        Total: Rs.
+        <span id="cartTotal">0</span>
+    </div>
+
+    <button
+        class="checkout-btn"
+        onclick="showCheckout()">
+
+        Checkout
+
+    </button>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer id="contact">
+
+    <h2>Zaree Collection</h2>
+
+    <p>Makeup • Skincare • Fragrances</p>
+
+    <p>📦 Cash on Delivery Available</p>
+
+    <p>📱 WhatsApp Orders Available</p>
+
+    <div class="copyright">
+        © 2026 Zaree Collection. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+<script>
+
+let cart = [];
+
+
+/* ADD PRODUCT */
+
+function addProduct(name, price, optionId){
+
+    const option =
+        document.getElementById(optionId).value;
+
+    cart.push({
+        name:name,
+        price:price,
+        option:option
+    });
+
+    updateCart();
+
+    alert("Product added to cart!");
+
+}
+
+
+/* UPDATE CART */
+
+function updateCart(){
+
+    document.getElementById("cartCount")
+        .textContent = cart.length;
+
+    const items =
+        document.getElementById("cartItems");
+
+    items.innerHTML = "";
+
+    let total = 0;
+
+    if(cart.length === 0){
+
+        items.innerHTML =
+            "<p>Your cart is empty.</p>";
+
+    }
+
+    cart.forEach(function(item,index){
+
+        total += item.price;
+
+        items.innerHTML += `
+
+            <div class="cart-item">
+
+                <strong>${item.name}</strong>
+
+                <div>
+                    Option: ${item.option}
+                </div>
+
+                <div>
+                    Rs. ${item.price}
+                </div>
+
+                <button
+                    class="remove-btn"
+                    onclick="removeItem(${index})">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+    document.getElementById("cartTotal")
+        .textContent = total;
+
+}
+
+
+/* REMOVE */
+
+function removeItem(index){
+
+    cart.splice(index,1);
+
+    updateCart();
+
+}
+
+
+/* OPEN CART */
+
+function openCart(){
+
+    document.getElementById("cartPanel")
+        .classList.add("open");
+
+    updateCart();
+
+}
+
+
+/* CLOSE CART */
+
+function closeCart(){
+
+    document.getElementById("cartPanel")
+        .classList.remove("open");
+
+}
+
+
+/* CHECKOUT */
+
+function showCheckout(){
+
+    if(cart.length === 0){
+
+        alert("Please add a product first.");
+
+        return;
+
+    }
+
+    closeCart();
+
+    document.getElementById("checkout")
+        .classList.add("show");
+
+    document.getElementById("checkout")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* WHATSAPP ORDER */
+
+function placeOrder(){
+
+    const name =
+        document.getElementById("customerName")
+        .value.trim();
+
+    const phone =
+        document.getElementById("customerPhone")
+        .value.trim();
+
+    const city =
+        document.getElementById("customerCity")
+        .value.trim();
+
+    const address =
+        document.getElementById("customerAddress")
+        .value.trim();
+
+
+    if(!name || !phone || !city || !address){
+
+        alert("Please fill all customer details.");
+
+        return;
+
+    }
+
+
+    let orderText =
+        "Zaree Collection Order\n\n";
+
+    orderText +=
+        "Name: " + name + "\n";
+
+    orderText +=
+        "Phone: " + phone + "\n";
+
+    orderText +=
+        "City: " + city + "\n";
+
+    orderText +=
+        "Address: " + address + "\n\n";
+
+    orderText +=
+        "Products:\n";
+
+
+    cart.forEach(function(item,index){
+
+        orderText +=
+            (index + 1) +
+            ". " +
+            item.name +
+            " | " +
+            item.option +
+            " | Rs. " +
+            item.price +
+            "\n";
+
+    });
+
+
+    const total =
+        cart.reduce(function(sum,item){
+
+            return sum + item.price;
+
+        },0);
+
+
+    orderText +=
+        "\nTotal: Rs. " + total;
+
+
+    /*
+      WhatsApp number:
+      03047041769
+    */
+
+    const whatsappNumber =
+        "923047041769";
+
+
+    const whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(orderText);
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterProducts(category){
+
+    const products =
+        document.querySelectorAll(".product");
+
+
+    products.forEach(function(product){
+
+        if(
+            product.dataset.category === category
+        ){
+
+            product.style.display = "block";
+
+        }else{
+
+            product.style.display = "none";
+
+        }
+
+    });
+
+
+    document.getElementById("products")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+</script>
+
+</body>
+  </html>
