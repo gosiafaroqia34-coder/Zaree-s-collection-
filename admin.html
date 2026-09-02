@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Zaree Collection | Admin Panel</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -175,9 +177,37 @@ header{
     font-size:15px;
 }
 
+.form-group input[type="file"]{
+    background:#fff;
+    padding:10px;
+}
+
 .form-group textarea{
     min-height:100px;
     resize:vertical;
+}
+
+.image-help{
+    margin-top:7px;
+    color:#777;
+    font-size:13px;
+}
+
+.image-preview{
+    display:none;
+    width:150px;
+    height:150px;
+    margin-top:12px;
+    border-radius:10px;
+    object-fit:cover;
+    border:1px solid #ddd;
+}
+
+.upload-status{
+    margin-top:8px;
+    color:#c2185b;
+    font-size:14px;
+    font-weight:bold;
 }
 
 .save-btn{
@@ -193,6 +223,11 @@ header{
     font-size:16px;
 }
 
+.save-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
 .cancel-btn{
     margin-top:10px;
     width:100%;
@@ -202,6 +237,13 @@ header{
     background:#eee;
     cursor:pointer;
     display:none;
+}
+
+.status{
+    margin-top:12px;
+    text-align:center;
+    color:#c2185b;
+    font-weight:bold;
 }
 
 /* PRODUCTS */
@@ -288,13 +330,6 @@ header{
     color:white;
 }
 
-.status{
-    margin-top:12px;
-    text-align:center;
-    color:#c2185b;
-    font-weight:bold;
-}
-
 /* MOBILE */
 
 @media(max-width:800px){
@@ -302,6 +337,7 @@ header{
     .product-list{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:600px){
@@ -321,8 +357,11 @@ header{
     header{
         justify-content:center;
     }
+
 }
+
 </style>
+
 </head>
 
 <body>
@@ -341,12 +380,14 @@ header{
         <input
             type="email"
             id="email"
-            placeholder="Admin Email">
+            placeholder="Admin Email"
+            autocomplete="email">
 
         <input
             type="password"
             id="password"
-            placeholder="Password">
+            placeholder="Password"
+            autocomplete="current-password">
 
         <button
             class="login-btn"
@@ -408,6 +449,8 @@ header{
         <div class="form-grid">
 
 
+            <!-- PRODUCT NAME -->
+
             <div class="form-group">
 
                 <label>
@@ -422,6 +465,8 @@ header{
             </div>
 
 
+            <!-- PRICE -->
+
             <div class="form-group">
 
                 <label>
@@ -435,6 +480,8 @@ header{
 
             </div>
 
+
+            <!-- CATEGORY -->
 
             <div class="form-group">
 
@@ -473,6 +520,8 @@ header{
             </div>
 
 
+            <!-- STOCK -->
+
             <div class="form-group">
 
                 <label>
@@ -486,6 +535,8 @@ header{
 
             </div>
 
+
+            <!-- SIZES -->
 
             <div class="form-group">
 
@@ -501,6 +552,8 @@ header{
             </div>
 
 
+            <!-- COLORS -->
+
             <div class="form-group">
 
                 <label>
@@ -515,19 +568,43 @@ header{
             </div>
 
 
+            <!-- IMAGE -->
+
             <div class="form-group full">
 
                 <label>
-                    Image URL
+                    Product Image
                 </label>
 
                 <input
+                    id="productImageFile"
+                    type="file"
+                    accept="image/*">
+
+                <div class="image-help">
+                    📷 Gallery se product image select karein
+                </div>
+
+                <div
+                    class="upload-status"
+                    id="imageUploadStatus">
+                </div>
+
+                <img
+                    id="imagePreview"
+                    class="image-preview"
+                    alt="Image Preview">
+
+                <!-- Cloudinary image URL hidden -->
+
+                <input
                     id="productImage"
-                    type="url"
-                    placeholder="Paste product image URL">
+                    type="hidden">
 
             </div>
 
+
+            <!-- DESCRIPTION -->
 
             <div class="form-group full">
 
@@ -625,6 +702,8 @@ import {
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
+/* FIREBASE CONFIG */
+
 const firebaseConfig = {
 
     apiKey:
@@ -647,6 +726,7 @@ const firebaseConfig = {
 
     measurementId:
     "G-CHHN119YVR"
+
 };
 
 
@@ -660,7 +740,31 @@ const db =
     getFirestore(app);
 
 
+/* CLOUDINARY */
+
+const CLOUDINARY_CLOUD_NAME =
+    "fipa2xvp";
+
+const CLOUDINARY_UPLOAD_PRESET =
+    "zaree_productsgb";
+
+
 let editingId = null;
+
+
+/* ELEMENTS */
+
+const imageFileInput =
+    document.getElementById("productImageFile");
+
+const imageUploadStatus =
+    document.getElementById("imageUploadStatus");
+
+const imagePreview =
+    document.getElementById("imagePreview");
+
+const saveBtn =
+    document.getElementById("saveBtn");
 
 
 /* LOGIN */
@@ -668,10 +772,13 @@ let editingId = null;
 window.login = async function(){
 
     const email =
-        document.getElementById("email").value.trim();
+        document.getElementById("email")
+        .value
+        .trim();
 
     const password =
-        document.getElementById("password").value;
+        document.getElementById("password")
+        .value;
 
     const message =
         document.getElementById("loginMessage");
@@ -683,6 +790,7 @@ window.login = async function(){
             "Email and password required.";
 
         return;
+
     }
 
 
@@ -697,6 +805,8 @@ window.login = async function(){
         message.textContent = "";
 
     }catch(error){
+
+        console.error(error);
 
         message.textContent =
             "Login failed. Check email/password.";
@@ -717,7 +827,7 @@ window.logout = async function(){
 
 /* AUTH STATE */
 
-onAuthStateChanged(auth, function(user){
+onAuthStateChanged(auth,function(user){
 
     if(user){
 
@@ -742,13 +852,176 @@ onAuthStateChanged(auth, function(user){
 });
 
 
+/* CLOUDINARY IMAGE UPLOAD */
+
+imageFileInput.addEventListener(
+    "change",
+    async function(){
+
+        const file =
+            this.files[0];
+
+
+        if(!file){
+
+            return;
+
+        }
+
+
+        /* CHECK FILE TYPE */
+
+        if(!file.type.startsWith("image/")){
+
+            imageUploadStatus.textContent =
+                "Please select an image file.";
+
+            this.value = "";
+
+            return;
+
+        }
+
+
+        /* CHECK FILE SIZE - 10MB */
+
+        if(file.size > 10 * 1024 * 1024){
+
+            imageUploadStatus.textContent =
+                "Image must be smaller than 10MB.";
+
+            this.value = "";
+
+            return;
+
+        }
+
+
+        imageUploadStatus.textContent =
+            "Uploading image... ⏳";
+
+
+        saveBtn.disabled = true;
+
+
+        /* LOCAL PREVIEW */
+
+        const localURL =
+            URL.createObjectURL(file);
+
+        imagePreview.src =
+            localURL;
+
+        imagePreview.style.display =
+            "block";
+
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "file",
+            file
+        );
+
+
+        formData.append(
+            "upload_preset",
+            CLOUDINARY_UPLOAD_PRESET
+        );
+
+
+        try{
+
+            const response =
+                await fetch(
+
+                    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+
+                    {
+                        method:"POST",
+                        body:formData
+                    }
+
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if(!response.ok){
+
+                throw new Error(
+                    data.error?.message ||
+                    "Image upload failed."
+                );
+
+            }
+
+
+            /* SAVE CLOUDINARY URL */
+
+            document.getElementById(
+                "productImage"
+            ).value =
+                data.secure_url;
+
+
+            /* SHOW CLOUDINARY IMAGE */
+
+            imagePreview.src =
+                data.secure_url;
+
+
+            imageUploadStatus.textContent =
+                "Image uploaded successfully ✅";
+
+
+        }catch(error){
+
+            console.error(
+                "Cloudinary error:",
+                error
+            );
+
+
+            document.getElementById(
+                "productImage"
+            ).value = "";
+
+
+            imagePreview.style.display =
+                "none";
+
+
+            imageUploadStatus.textContent =
+                "Image upload failed ❌";
+
+
+            alert(
+                "Image upload failed. Please try again."
+            );
+
+        }finally{
+
+            saveBtn.disabled = false;
+
+        }
+
+    }
+);
+
+
 /* SAVE PRODUCT */
 
 window.saveProduct = async function(){
 
     const name =
         document.getElementById("productName")
-        .value.trim();
+        .value
+        .trim();
 
     const price =
         Number(
@@ -768,19 +1041,23 @@ window.saveProduct = async function(){
 
     const sizes =
         document.getElementById("productSizes")
-        .value.trim();
+        .value
+        .trim();
 
     const colors =
         document.getElementById("productColors")
-        .value.trim();
+        .value
+        .trim();
 
     const image =
         document.getElementById("productImage")
-        .value.trim();
+        .value
+        .trim();
 
     const description =
         document.getElementById("productDescription")
-        .value.trim();
+        .value
+        .trim();
 
     const status =
         document.getElementById("statusMessage");
@@ -796,16 +1073,39 @@ window.saveProduct = async function(){
     }
 
 
+    /* IMAGE REQUIRED ONLY FOR NEW PRODUCT */
+
+    if(!editingId && !image){
+
+        status.textContent =
+            "Please select and upload a product image.";
+
+        return;
+
+    }
+
+
+    saveBtn.disabled = true;
+
+
     const product = {
 
         name:name,
+
         price:price,
+
         category:category,
+
         stock:stock,
+
         sizes:sizes,
+
         colors:colors,
+
         image:image,
+
         description:description,
+
         updatedAt:serverTimestamp()
 
     };
@@ -816,37 +1116,60 @@ window.saveProduct = async function(){
         if(editingId){
 
             await updateDoc(
-                doc(db,"products",editingId),
+
+                doc(
+                    db,
+                    "products",
+                    editingId
+                ),
+
                 product
+
             );
 
+
             status.textContent =
-                "Product updated successfully.";
+                "Product updated successfully. ✅";
 
         }else{
 
             await addDoc(
-                collection(db,"products"),
+
+                collection(
+                    db,
+                    "products"
+                ),
+
                 {
                     ...product,
-                    createdAt:serverTimestamp()
+                    createdAt:
+                    serverTimestamp()
                 }
+
             );
 
+
             status.textContent =
-                "Product added successfully.";
+                "Product added successfully. ✅";
 
         }
 
 
         clearForm();
 
-        loadProducts();
+        await loadProducts();
+
 
     }catch(error){
 
+        console.error(error);
+
         status.textContent =
             "Error: " + error.message;
+
+    }finally{
+
+        saveBtn.disabled = false;
 
     }
 
@@ -858,7 +1181,10 @@ window.saveProduct = async function(){
 async function loadProducts(){
 
     const list =
-        document.getElementById("productList");
+        document.getElementById(
+            "productList"
+        );
+
 
     list.innerHTML =
         "<p>Loading products...</p>";
@@ -868,7 +1194,10 @@ async function loadProducts(){
 
         const snapshot =
             await getDocs(
-                collection(db,"products")
+                collection(
+                    db,
+                    "products"
+                )
             );
 
 
@@ -899,12 +1228,17 @@ async function loadProducts(){
 
                 ?
 
-                `<img src="${escapeHTML(product.image)}"
-                 alt="${escapeHTML(product.name || "Product")}">`
+                `<img
+                    src="${escapeHTML(product.image)}"
+                    alt="${escapeHTML(product.name || "Product")}"
+                    loading="lazy"
+                >`
 
                 :
 
-                `<div class="no-image">💄</div>`;
+                `<div class="no-image">
+                    💄
+                </div>`;
 
 
             list.innerHTML += `
@@ -920,7 +1254,9 @@ async function loadProducts(){
                     <div class="product-content">
 
                         <h3>
-                            ${escapeHTML(product.name || "")}
+                            ${escapeHTML(
+                                product.name || ""
+                            )}
                         </h3>
 
                         <div class="product-price">
@@ -932,7 +1268,9 @@ async function loadProducts(){
                         <div class="product-info">
 
                             Category:
-                            ${escapeHTML(product.category || "-")}
+                            ${escapeHTML(
+                                product.category || "-"
+                            )}
 
                             <br>
 
@@ -942,14 +1280,19 @@ async function loadProducts(){
                             <br>
 
                             Sizes:
-                            ${escapeHTML(product.sizes || "-")}
+                            ${escapeHTML(
+                                product.sizes || "-"
+                            )}
 
                             <br>
 
                             Colors:
-                            ${escapeHTML(product.colors || "-")}
+                            ${escapeHTML(
+                                product.colors || "-"
+                            )}
 
                         </div>
+
 
                         <div class="card-buttons">
 
@@ -960,6 +1303,7 @@ async function loadProducts(){
                                 Edit
 
                             </button>
+
 
                             <button
                                 class="delete-btn"
@@ -979,7 +1323,10 @@ async function loadProducts(){
 
         });
 
+
     }catch(error){
+
+        console.error(error);
 
         list.innerHTML =
             "<p>Could not load products.</p>";
@@ -989,7 +1336,7 @@ async function loadProducts(){
 }
 
 
-/* EDIT */
+/* EDIT PRODUCT */
 
 window.editProduct = async function(id){
 
@@ -997,7 +1344,10 @@ window.editProduct = async function(id){
 
         const snapshot =
             await getDocs(
-                collection(db,"products")
+                collection(
+                    db,
+                    "products"
+                )
             );
 
 
@@ -1009,8 +1359,11 @@ window.editProduct = async function(id){
             if(document.id === id){
 
                 found = {
+
                     id:document.id,
+
                     ...document.data()
+
                 };
 
             }
@@ -1018,54 +1371,125 @@ window.editProduct = async function(id){
         });
 
 
-        if(!found) return;
+        if(!found){
+
+            return;
+
+        }
 
 
-        editingId = id;
+        editingId =
+            id;
 
 
-        document.getElementById("productName")
-            .value = found.name || "";
-
-        document.getElementById("productPrice")
-            .value = found.price || "";
-
-        document.getElementById("productCategory")
-            .value = found.category || "Makeup";
-
-        document.getElementById("productStock")
-            .value = found.stock || 0;
-
-        document.getElementById("productSizes")
-            .value = found.sizes || "";
-
-        document.getElementById("productColors")
-            .value = found.colors || "";
-
-        document.getElementById("productImage")
-            .value = found.image || "";
-
-        document.getElementById("productDescription")
-            .value = found.description || "";
+        document.getElementById(
+            "productName"
+        ).value =
+            found.name || "";
 
 
-        document.getElementById("formTitle")
-            .textContent = "Edit Product";
+        document.getElementById(
+            "productPrice"
+        ).value =
+            found.price || "";
 
-        document.getElementById("saveBtn")
-            .textContent = "Update Product";
 
-        document.getElementById("cancelBtn")
-            .style.display = "block";
+        document.getElementById(
+            "productCategory"
+        ).value =
+            found.category || "Makeup";
+
+
+        document.getElementById(
+            "productStock"
+        ).value =
+            found.stock || 0;
+
+
+        document.getElementById(
+            "productSizes"
+        ).value =
+            found.sizes || "";
+
+
+        document.getElementById(
+            "productColors"
+        ).value =
+            found.colors || "";
+
+
+        document.getElementById(
+            "productImage"
+        ).value =
+            found.image || "";
+
+
+        document.getElementById(
+            "productDescription"
+        ).value =
+            found.description || "";
+
+
+        /* SHOW EXISTING IMAGE */
+
+        if(found.image){
+
+            imagePreview.src =
+                found.image;
+
+            imagePreview.style.display =
+                "block";
+
+            imageUploadStatus.textContent =
+                "Current product image";
+
+        }else{
+
+            imagePreview.style.display =
+                "none";
+
+            imageUploadStatus.textContent =
+                "";
+
+        }
+
+
+        /* RESET FILE INPUT */
+
+        imageFileInput.value =
+            "";
+
+
+        document.getElementById(
+            "formTitle"
+        ).textContent =
+            "Edit Product";
+
+
+        document.getElementById(
+            "saveBtn"
+        ).textContent =
+            "Update Product";
+
+
+        document.getElementById(
+            "cancelBtn"
+        ).style.display =
+            "block";
 
 
         window.scrollTo({
+
             top:0,
+
             behavior:"smooth"
+
         });
 
 
     }catch(error){
+
+        console.error(error);
 
         alert(
             "Could not open product."
@@ -1076,7 +1500,7 @@ window.editProduct = async function(id){
 };
 
 
-/* DELETE */
+/* DELETE PRODUCT */
 
 window.deleteProduct = async function(id){
 
@@ -1086,18 +1510,32 @@ window.deleteProduct = async function(id){
         );
 
 
-    if(!confirmDelete) return;
+    if(!confirmDelete){
+
+        return;
+
+    }
 
 
     try{
 
         await deleteDoc(
-            doc(db,"products",id)
+
+            doc(
+                db,
+                "products",
+                id
+            )
+
         );
 
-        loadProducts();
+
+        await loadProducts();
+
 
     }catch(error){
+
+        console.error(error);
 
         alert(
             "Could not delete product."
@@ -1108,11 +1546,12 @@ window.deleteProduct = async function(id){
 };
 
 
-/* CANCEL */
+/* CANCEL EDIT */
 
 window.cancelEdit = function(){
 
-    editingId = null;
+    editingId =
+        null;
 
     clearForm();
 
@@ -1123,56 +1562,121 @@ window.cancelEdit = function(){
 
 function clearForm(){
 
-    document.getElementById("productName")
-        .value = "";
-
-    document.getElementById("productPrice")
-        .value = "";
-
-    document.getElementById("productStock")
-        .value = "";
-
-    document.getElementById("productSizes")
-        .value = "";
-
-    document.getElementById("productColors")
-        .value = "";
-
-    document.getElementById("productImage")
-        .value = "";
-
-    document.getElementById("productDescription")
-        .value = "";
+    document.getElementById(
+        "productName"
+    ).value = "";
 
 
-    document.getElementById("formTitle")
-        .textContent = "Add New Product";
+    document.getElementById(
+        "productPrice"
+    ).value = "";
 
-    document.getElementById("saveBtn")
-        .textContent = "Add Product";
 
-    document.getElementById("cancelBtn")
-        .style.display = "none";
+    document.getElementById(
+        "productStock"
+    ).value = "";
 
-    editingId = null;
+
+    document.getElementById(
+        "productSizes"
+    ).value = "";
+
+
+    document.getElementById(
+        "productColors"
+    ).value = "";
+
+
+    document.getElementById(
+        "productImage"
+    ).value = "";
+
+
+    document.getElementById(
+        "productDescription"
+    ).value = "";
+
+
+    imageFileInput.value =
+        "";
+
+
+    imagePreview.src =
+        "";
+
+
+    imagePreview.style.display =
+        "none";
+
+
+    imageUploadStatus.textContent =
+        "";
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "Add New Product";
+
+
+    document.getElementById(
+        "saveBtn"
+    ).textContent =
+        "Add Product";
+
+
+    document.getElementById(
+        "cancelBtn"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "statusMessage"
+    ).textContent =
+        "";
+
+
+    editingId =
+        null;
 
 }
 
 
-/* BASIC HTML ESCAPE */
+/* HTML ESCAPE */
 
 function escapeHTML(value){
 
     return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
 </script>
 
 </body>
-  </html>
+</html>
