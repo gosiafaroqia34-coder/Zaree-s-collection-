@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Product | Zaree Collection</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -21,12 +19,19 @@ body{
     color:#222;
 }
 
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* HEADER */
+
 header{
-    border-bottom:1px solid #eee;
-    background:#fff;
     position:sticky;
     top:0;
     z-index:100;
+    background:#fff;
+    border-bottom:1px solid #eee;
 }
 
 .nav{
@@ -36,10 +41,11 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    gap:15px;
 }
 
 .logo{
-    font-size:23px;
+    font-size:22px;
     font-weight:bold;
 }
 
@@ -47,51 +53,87 @@ header{
     color:#e83e8c;
 }
 
-.back{
-    text-decoration:none;
-    color:#222;
+.back-btn{
+    background:#f8e8ef;
+    color:#e83e8c;
+    padding:9px 15px;
+    border-radius:25px;
+    font-size:14px;
 }
 
-.container{
+/* PRODUCT */
+
+.product-section{
     max-width:1200px;
     margin:auto;
-    padding:30px 20px;
+    padding:40px 20px;
 }
 
-/* IMAGES */
+.product-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
+}
+
+/* GALLERY */
 
 .gallery{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:12px;
+    width:100%;
 }
 
-.gallery img{
+.main-image{
     width:100%;
-    height:500px;
+    height:520px;
     object-fit:cover;
     border-radius:18px;
+    background:#fafafa;
+    border:1px solid #eee;
     display:block;
 }
 
-/* INFO */
-
-.product-info{
-    padding:30px 0;
+.thumbnail-list{
+    display:flex;
+    gap:10px;
+    margin-top:12px;
+    overflow-x:auto;
+    padding-bottom:5px;
 }
 
-.product-info h1{
-    font-size:32px;
-    margin-bottom:10px;
+.thumbnail{
+    width:75px;
+    height:75px;
+    flex:0 0 75px;
+    object-fit:cover;
+    border-radius:10px;
+    border:2px solid #eee;
+    cursor:pointer;
+}
+
+.thumbnail.active{
+    border-color:#e83e8c;
+}
+
+/* DETAILS */
+
+.product-details{
+    padding-top:10px;
 }
 
 .category{
     color:#888;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.product-title{
+    font-size:34px;
+    line-height:1.2;
     margin-bottom:12px;
 }
 
 .rating{
     color:#f5b400;
+    font-size:18px;
     margin-bottom:15px;
 }
 
@@ -99,18 +141,24 @@ header{
     color:#e83e8c;
     font-size:27px;
     font-weight:bold;
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 
 .description{
+    color:#666;
     line-height:1.7;
-    color:#555;
     margin-bottom:25px;
+    white-space:pre-line;
 }
 
 /* OPTIONS */
 
-.option-title{
+.option-box{
+    margin-bottom:22px;
+}
+
+.option-label{
+    display:block;
     font-weight:bold;
     margin-bottom:10px;
 }
@@ -118,133 +166,207 @@ header{
 .options{
     display:flex;
     flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:25px;
+    gap:9px;
 }
 
-.option{
+.option-btn{
     border:1px solid #ddd;
     background:#fff;
-    padding:11px 18px;
-    border-radius:25px;
+    padding:10px 17px;
+    border-radius:22px;
     cursor:pointer;
 }
 
-.option.active{
+.option-btn:hover{
     border-color:#e83e8c;
-    background:#fce8f1;
-    color:#e83e8c;
 }
+
+.option-btn.selected{
+    background:#e83e8c;
+    border-color:#e83e8c;
+    color:#fff;
+}
+
+/* QUANTITY */
 
 .quantity{
     display:flex;
     align-items:center;
-    gap:10px;
-    margin-bottom:25px;
+    gap:15px;
+    margin-bottom:22px;
 }
 
 .quantity button{
-    width:35px;
-    height:35px;
+    width:38px;
+    height:38px;
     border:1px solid #ddd;
     background:#fff;
     border-radius:50%;
     cursor:pointer;
+    font-size:18px;
 }
 
 .quantity span{
+    min-width:25px;
+    text-align:center;
     font-weight:bold;
 }
 
-.buttons{
+/* BUTTONS */
+
+.action-buttons{
     display:flex;
     gap:12px;
-    flex-wrap:wrap;
 }
 
-.add-cart,
-.whatsapp{
+.cart-btn,
+.whatsapp-btn{
+    flex:1;
     border:0;
-    padding:15px 22px;
+    padding:14px;
     border-radius:30px;
-    cursor:pointer;
-    font-weight:bold;
     font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.add-cart{
+.cart-btn{
     background:#e83e8c;
     color:#fff;
 }
 
-.whatsapp{
+.whatsapp-btn{
     background:#25D366;
     color:#fff;
 }
 
 /* REVIEWS */
 
-.reviews{
-    margin-top:40px;
-    padding-top:30px;
-    border-top:1px solid #eee;
+.reviews-section{
+    max-width:1200px;
+    margin:auto;
+    padding:30px 20px 60px;
 }
 
-.review{
-    border-bottom:1px solid #eee;
-    padding:18px 0;
+.section-title{
+    font-size:27px;
+    margin-bottom:20px;
+}
+
+.section-title span{
+    color:#e83e8c;
+}
+
+.review-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.review-card{
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:20px;
 }
 
 .review-name{
     font-weight:bold;
+    margin-bottom:5px;
 }
 
 .review-stars{
     color:#f5b400;
-    margin:5px 0;
+    margin:8px 0;
 }
 
 .review-text{
     color:#666;
+    font-size:14px;
     line-height:1.6;
 }
 
-@media(min-width:800px){
-
-    .product-layout{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:50px;
-        align-items:start;
-    }
-
-    .gallery{
-        grid-template-columns:1fr;
-    }
-
+.empty{
+    text-align:center;
+    color:#777;
+    padding:40px 10px;
 }
 
-@media(max-width:799px){
+.loading{
+    text-align:center;
+    padding:60px 20px;
+    color:#777;
+}
 
-    .gallery{
-        display:flex;
-        overflow-x:auto;
-        scroll-snap-type:x mandatory;
-        gap:10px;
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#222;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:25px;
+    display:none;
+    z-index:500;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .product-layout{
+        grid-template-columns:1fr;
+        gap:25px;
     }
 
-    .gallery img{
-        min-width:100%;
+    .main-image{
         height:400px;
-        scroll-snap-align:start;
     }
 
-    .product-info h1{
+    .product-title{
         font-size:27px;
     }
 
+    .review-list{
+        grid-template-columns:1fr;
+    }
 }
 
+@media(max-width:600px){
+
+    .nav{
+        padding:13px 12px;
+    }
+
+    .logo{
+        font-size:19px;
+    }
+
+    .product-section{
+        padding:20px 12px;
+    }
+
+    .main-image{
+        height:350px;
+    }
+
+    .thumbnail{
+        width:65px;
+        height:65px;
+        flex-basis:65px;
+    }
+
+    .price{
+        font-size:23px;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+    }
+
+}
 </style>
 </head>
 
@@ -254,12 +376,12 @@ header{
 
 <div class="nav">
 
-<div class="logo">
+<a href="index.html" class="logo">
     Zaree <span>Collection</span>
-</div>
+</a>
 
-<a class="back" href="index.html">
-    ← Back
+<a href="index.html" class="back-btn">
+    ← Back to Shop
 </a>
 
 </div>
@@ -267,52 +389,236 @@ header{
 </header>
 
 
-<div class="container">
+<main>
 
-<div id="productArea">
+<section class="product-section">
+
+<div id="loading" class="loading">
     Loading product...
 </div>
 
+
+<div
+    id="productContent"
+    class="product-layout"
+    style="display:none;"
+>
+
+<!-- GALLERY -->
+
+<div class="gallery">
+
+<img
+    id="mainImage"
+    class="main-image"
+    src=""
+    alt="Product"
+>
+
+<div
+    id="thumbnailList"
+    class="thumbnail-list"
+></div>
+
 </div>
 
 
+<!-- DETAILS -->
+
+<div class="product-details">
+
+<div
+    id="productCategory"
+    class="category"
+></div>
+
+<h1
+    id="productName"
+    class="product-title"
+></h1>
+
+<div
+    id="productRating"
+    class="rating"
+></div>
+
+<div
+    id="productPrice"
+    class="price"
+>
+    Rs. 0
+</div>
+
+<div
+    id="productDescription"
+    class="description"
+></div>
+
+
+<!-- SIZE -->
+
+<div
+    id="sizeBox"
+    class="option-box"
+    style="display:none;"
+>
+
+<label class="option-label">
+    Size
+</label>
+
+<div
+    id="sizeOptions"
+    class="options"
+></div>
+
+</div>
+
+
+<!-- COLOR -->
+
+<div
+    id="colorBox"
+    class="option-box"
+    style="display:none;"
+>
+
+<label class="option-label">
+    Color
+</label>
+
+<div
+    id="colorOptions"
+    class="options"
+></div>
+
+</div>
+
+
+<!-- QUANTITY -->
+
+<div class="option-box">
+
+<label class="option-label">
+    Quantity
+</label>
+
+<div class="quantity">
+
+<button onclick="changeQuantity(-1)">
+    −
+</button>
+
+<span id="quantity">
+    1
+</span>
+
+<button onclick="changeQuantity(1)">
+    +
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ACTIONS -->
+
+<div class="action-buttons">
+
+<button
+    class="cart-btn"
+    onclick="addToCart()"
+>
+    🛒 Add To Cart
+</button>
+
+<button
+    class="whatsapp-btn"
+    onclick="orderWhatsApp()"
+>
+    💬 WhatsApp Order
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section class="reviews-section">
+
+<h2 class="section-title">
+    Customer <span>Reviews</span>
+</h2>
+
+<div
+    id="reviewList"
+    class="review-list"
+>
+
+<div class="loading">
+    Loading reviews...
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<div id="toast" class="toast"></div>
+
+
 <script type="module">
+
+/* =========================
+   FIREBASE
+========================= */
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getFirestore,
-    doc,
-    getDoc,
     collection,
-    getDocs
+    getDocs,
+    doc,
+    getDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* FIREBASE */
-
 const firebaseConfig = {
 
-    apiKey:"YOUR_API_KEY",
+    apiKey:
+    "AIzaSyAmMUYbXG7XrdJrjBlNZ_9MkyHA9P9aTqA",
 
     authDomain:
-        "zaree-collection-5589.firebaseapp.com",
+    "zaree-collection-5589b.firebaseapp.com",
 
     projectId:
-        "zaree-collection-5589",
+    "zaree-collection-5589b",
 
     storageBucket:
-        "zaree-collection-5589.firebasestorage.app",
+    "zaree-collection-5589b.firebasestorage.app",
 
     messagingSenderId:
-        "YOUR_MESSAGING_SENDER_ID",
+    "724088426576",
 
     appId:
-        "YOUR_APP_ID"
+    "1:724088426576:web:d781393dfb54e2e46ec155",
 
+    measurementId:
+    "G-CHHN119YVR"
 };
+
 
 const app =
     initializeApp(firebaseConfig);
@@ -321,20 +627,116 @@ const db =
     getFirestore(app);
 
 
+/* =========================
+   SETTINGS
+========================= */
+
 const WHATSAPP_NUMBER =
     "923249689534";
+
+const CART_KEY =
+    "zareeCart";
 
 
 let product = null;
 
-let selectedSize = null;
+let selectedSize = "";
 
-let selectedColor = null;
+let selectedColor = "";
 
 let quantity = 1;
 
 
-/* GET PRODUCT ID */
+/* =========================
+   HELPERS
+========================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function getStars(rating){
+
+    rating =
+        Number(rating || 0);
+
+    let html = "";
+
+    for(let i=1;i<=5;i++){
+
+        html +=
+            i <= rating
+            ? "★"
+            : "☆";
+
+    }
+
+    return html;
+
+}
+
+
+function getImages(product){
+
+    let images = [];
+
+    if(
+        Array.isArray(product.images)
+    ){
+
+        images =
+            product.images
+            .filter(Boolean)
+            .slice(0,6);
+
+    }
+
+    if(
+        !images.length &&
+        product.image
+    ){
+
+        images.push(
+            product.image
+        );
+
+    }
+
+    if(
+        !images.length &&
+        product.imageUrl
+    ){
+
+        images.push(
+            product.imageUrl
+        );
+
+    }
+
+    if(!images.length){
+
+        images.push(
+            "https://via.placeholder.com/700x700?text=Zaree+Collection"
+        );
+
+    }
+
+    return images;
+
+}
+
+
+/* =========================
+   GET PRODUCT ID
+========================= */
 
 const params =
     new URLSearchParams(
@@ -345,16 +747,17 @@ const productId =
     params.get("id");
 
 
-/* LOAD PRODUCT */
+/* =========================
+   LOAD PRODUCT
+========================= */
 
 async function loadProduct(){
 
     if(!productId){
 
-        document.getElementById(
-            "productArea"
-        ).innerHTML =
-        "<p>Product not found.</p>";
+        showError(
+            "Product ID is missing."
+        );
 
         return;
 
@@ -362,386 +765,413 @@ async function loadProduct(){
 
     try{
 
-        const ref =
-            doc(db,"products",productId);
+        const productRef =
+            doc(
+                db,
+                "products",
+                productId
+            );
 
-        const snap =
-            await getDoc(ref);
+        const snapshot =
+            await getDoc(productRef);
 
-        if(!snap.exists()){
+        if(!snapshot.exists()){
 
-            document.getElementById(
-                "productArea"
-            ).innerHTML =
-            "<p>Product not found.</p>";
+            showError(
+                "Product not found."
+            );
 
             return;
 
         }
 
         product = {
-            id:snap.id,
-            ...snap.data()
+
+            id:
+                snapshot.id,
+
+            ...snapshot.data()
+
         };
 
-        displayProduct();
+        renderProduct();
+
+        loadReviews();
 
     }catch(error){
 
         console.error(error);
 
-        document.getElementById(
-            "productArea"
-        ).innerHTML =
-        "<p>Unable to load product.</p>";
+        showError(
+            "Unable to load product."
+        );
 
     }
 
 }
 
 
-/* IMAGES */
-
-function getImages(){
-
-    if(product.images &&
-       Array.isArray(product.images) &&
-       product.images.length){
-
-        return product.images.slice(0,6);
-
-    }
-
-    const oldImage =
-        product.image ||
-        product.imageUrl;
-
-    return oldImage ? [oldImage] : [];
-
-}
-
-
-/* STARS */
-
-function stars(rating){
-
-    rating =
-        Number(rating || 0);
-
-    let html = "";
-
-    for(let i=1;i<=5;i++){
-
-        html +=
-            i <= rating ? "★" : "☆";
-
-    }
-
-    return html;
-
-}
-
-
-/* DISPLAY */
-
-function displayProduct(){
-
-    const images =
-        getImages();
-
-    const gallery =
-        images.map(image =>
-
-            `<img src="${image}"
-                  alt="${product.name || "Product"}">`
-
-        ).join("");
-
-
-    const colors =
-        product.colors || [];
-
-    let colorHTML = "";
-
-    if(colors.length){
-
-        colorHTML = `
-
-        <div>
-
-            <div class="option-title">
-                Color
-            </div>
-
-            <div class="options">
-
-                ${colors.map((color,index) => `
-
-                    <button
-                        class="option"
-                        onclick="selectColor('${String(color).replace(/'/g,"\\'")}',this)">
-                        ${color}
-                    </button>
-
-                `).join("")}
-
-            </div>
-
-        </div>
-
-        `;
-
-    }
-
-
-    const sizes =
-        product.sizes || {};
-
-    let sizeHTML = "";
-
-    if(Object.keys(sizes).length){
-
-        sizeHTML = `
-
-        <div>
-
-            <div class="option-title">
-                Size
-            </div>
-
-            <div class="options">
-
-                ${Object.keys(sizes).map(size => `
-
-                    <button
-                        class="option"
-                        onclick="selectSize('${size}',this)">
-
-                        ${size}
-
-                        <br>
-
-                        <small>
-                            Rs. ${Number(
-                                sizes[size].price || 0
-                            ).toLocaleString()}
-                        </small>
-
-                    </button>
-
-                `).join("")}
-
-            </div>
-
-        </div>
-
-        `;
-
-    }
-
-
-    let defaultPrice =
-        Number(product.price || 0);
-
-    if(Object.keys(sizes).length){
-
-        const first =
-            Object.keys(sizes)[0];
-
-        defaultPrice =
-            Number(sizes[first].price || 0);
-
-    }
+/* =========================
+   RENDER PRODUCT
+========================= */
+
+function renderProduct(){
+
+    document.title =
+        (product.name ||
+        "Product") +
+        " | Zaree Collection";
 
 
     document.getElementById(
-        "productArea"
-    ).innerHTML = `
-
-        <div class="product-layout">
-
-            <div>
-
-                <div class="gallery">
-                    ${gallery}
-                </div>
-
-            </div>
+        "loading"
+    ).style.display = "none";
 
 
-            <div class="product-info">
-
-                <h1>
-                    ${product.name || "Product"}
-                </h1>
-
-                <div class="category">
-                    ${product.category || "Beauty"}
-                </div>
-
-                <div class="rating">
-                    ${stars(product.rating)}
-                    (${product.rating || 0})
-                </div>
-
-                <div class="price" id="price">
-                    Rs. ${defaultPrice.toLocaleString()}
-                </div>
-
-                <div class="description">
-                    ${product.description ||
-                    "No description available."}
-                </div>
-
-                ${sizeHTML}
-
-                ${colorHTML}
+    document.getElementById(
+        "productContent"
+    ).style.display = "grid";
 
 
-                <div class="option-title">
-                    Quantity
-                </div>
-
-                <div class="quantity">
-
-                    <button onclick="changeQty(-1)">
-                        −
-                    </button>
-
-                    <span id="qty">
-                        1
-                    </span>
-
-                    <button onclick="changeQty(1)">
-                        +
-                    </button>
-
-                </div>
+    document.getElementById(
+        "productName"
+    ).textContent =
+        product.name ||
+        "Beauty Product";
 
 
-                <div class="buttons">
-
-                    <button
-                        class="add-cart"
-                        onclick="addToCart()">
-
-                        🛒 Add To Cart
-
-                    </button>
+    document.getElementById(
+        "productCategory"
+    ).textContent =
+        product.category ||
+        "Beauty";
 
 
-                    <button
-                        class="whatsapp"
-                        onclick="orderWhatsApp()">
-
-                        📲 WhatsApp Order
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
+    document.getElementById(
+        "productRating"
+    ).innerHTML =
+        getStars(
+            product.rating
+        );
 
 
-        <div class="reviews">
-
-            <h2>
-                Customer Reviews
-            </h2>
-
-            <div id="reviews">
-                Loading reviews...
-            </div>
-
-        </div>
-    `;
+    document.getElementById(
+        "productDescription"
+    ).textContent =
+        product.description ||
+        "Beautiful beauty product from Zaree Collection.";
 
 
-    loadReviews();
+    renderGallery();
+
+    renderSizes();
+
+    renderColors();
+
+    updatePrice();
 
 }
 
 
-/* SIZE */
+/* =========================
+   GALLERY
+========================= */
 
-window.selectSize =
-function(size,button){
+function renderGallery(){
 
-    selectedSize = size;
+    const images =
+        getImages(product);
 
-    document
-        .querySelectorAll(".option")
-        .forEach(btn => {
-
-            if(btn.parentElement ===
-               button.parentElement){
-
-                btn.classList.remove("active");
-
-            }
-
-        });
-
-    button.classList.add("active");
-
-    const price =
-        Number(
-            product.sizes[size].price || 0
+    const mainImage =
+        document.getElementById(
+            "mainImage"
         );
 
-    document.getElementById("price")
-        .textContent =
-        "Rs. " + price.toLocaleString();
+    const thumbnails =
+        document.getElementById(
+            "thumbnailList"
+        );
 
-};
+    mainImage.src =
+        images[0];
+
+    thumbnails.innerHTML = "";
+
+    images.forEach(
+        (image,index) => {
+
+            const thumbnail =
+                document.createElement(
+                    "img"
+                );
+
+            thumbnail.className =
+                "thumbnail" +
+                (
+                    index === 0
+                    ? " active"
+                    : ""
+                );
+
+            thumbnail.src =
+                image;
+
+            thumbnail.alt =
+                product.name ||
+                "Product image";
+
+            thumbnail.onclick =
+                () => {
+
+                    mainImage.src =
+                        image;
+
+                    document
+                        .querySelectorAll(
+                            ".thumbnail"
+                        )
+                        .forEach(
+                            item =>
+                            item.classList.remove(
+                                "active"
+                            )
+                        );
+
+                    thumbnail.classList.add(
+                        "active"
+                    );
+
+                };
+
+            thumbnails.appendChild(
+                thumbnail
+            );
+
+        }
+    );
+
+}
 
 
-/* COLOR */
+/* =========================
+   SIZES
+========================= */
 
-window.selectColor =
-function(color,button){
+function renderSizes(){
 
-    selectedColor = color;
+    const sizeBox =
+        document.getElementById(
+            "sizeBox"
+        );
 
-    document
-        .querySelectorAll(".option")
-        .forEach(btn => {
+    const options =
+        document.getElementById(
+            "sizeOptions"
+        );
 
-            if(btn.parentElement ===
-               button.parentElement){
+    const sizes =
+        product.sizes;
 
-                btn.classList.remove("active");
+    if(
+        !sizes ||
+        typeof sizes !== "object" ||
+        Array.isArray(sizes)
+    ){
 
-            }
+        sizeBox.style.display =
+            "none";
 
-        });
+        return;
 
-    button.classList.add("active");
+    }
 
-};
-
-
-/* QUANTITY */
-
-window.changeQty =
-function(amount){
-
-    quantity += amount;
-
-    if(quantity < 1)
-        quantity = 1;
-
-    document.getElementById("qty")
-        .textContent = quantity;
-
-};
+    const sizeNames =
+        Object.keys(sizes)
+        .filter(
+            name =>
+            sizes[name] !== null &&
+            sizes[name] !== undefined
+        );
 
 
-/* CURRENT PRICE */
+    if(!sizeNames.length){
 
-function currentPrice(){
+        sizeBox.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    sizeBox.style.display =
+        "block";
+
+    options.innerHTML = "";
+
+
+    sizeNames.forEach(
+        sizeName => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.type =
+                "button";
+
+            button.className =
+                "option-btn";
+
+            button.textContent =
+                sizeName;
+
+            button.onclick =
+                () => {
+
+                    selectedSize =
+                        sizeName;
+
+                    document
+                        .querySelectorAll(
+                            "#sizeOptions .option-btn"
+                        )
+                        .forEach(
+                            btn =>
+                            btn.classList.remove(
+                                "selected"
+                            )
+                        );
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+                    updatePrice();
+
+                };
+
+            options.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   COLORS
+========================= */
+
+function renderColors(){
+
+    const colorBox =
+        document.getElementById(
+            "colorBox"
+        );
+
+    const options =
+        document.getElementById(
+            "colorOptions"
+        );
+
+    let colors =
+        product.colors;
+
+
+    if(
+        typeof colors === "string"
+    ){
+
+        colors =
+            colors
+            .split(",")
+            .map(
+                color =>
+                color.trim()
+            )
+            .filter(Boolean);
+
+    }
+
+
+    if(
+        !Array.isArray(colors) ||
+        !colors.length
+    ){
+
+        colorBox.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    colorBox.style.display =
+        "block";
+
+    options.innerHTML = "";
+
+
+    colors.forEach(
+        color => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.type =
+                "button";
+
+            button.className =
+                "option-btn";
+
+            button.textContent =
+                color;
+
+            button.onclick =
+                () => {
+
+                    selectedColor =
+                        color;
+
+                    document
+                        .querySelectorAll(
+                            "#colorOptions .option-btn"
+                        )
+                        .forEach(
+                            btn =>
+                            btn.classList.remove(
+                                "selected"
+                            )
+                        );
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+                };
+
+            options.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+function getPrice(){
 
     if(
         selectedSize &&
@@ -749,217 +1179,479 @@ function currentPrice(){
         product.sizes[selectedSize]
     ){
 
+        const sizeData =
+            product.sizes[
+                selectedSize
+            ];
+
+        if(
+            typeof sizeData ===
+            "object"
+        ){
+
+            return Number(
+                sizeData.price || 0
+            );
+
+        }
+
         return Number(
-            product.sizes[selectedSize].price || 0
+            sizeData || 0
         );
 
     }
 
-    return Number(product.price || 0);
+    return Number(
+        product.price || 0
+    );
 
 }
 
 
-/* ADD CART */
+function updatePrice(){
+
+    const price =
+        getPrice();
+
+    document.getElementById(
+        "productPrice"
+    ).textContent =
+        price > 0
+        ? "Rs. " +
+          price.toLocaleString()
+        : "Price unavailable";
+
+}
+
+
+/* =========================
+   QUANTITY
+========================= */
+
+window.changeQuantity =
+function(change){
+
+    quantity +=
+        Number(change);
+
+    if(quantity < 1){
+
+        quantity = 1;
+
+    }
+
+    if(quantity > 99){
+
+        quantity = 99;
+
+    }
+
+    document.getElementById(
+        "quantity"
+    ).textContent =
+        quantity;
+
+};
+
+
+/* =========================
+   VALIDATE OPTIONS
+========================= */
+
+function validateOptions(){
+
+    if(
+        product.sizes &&
+        typeof product.sizes === "object" &&
+        !Array.isArray(product.sizes) &&
+        Object.keys(product.sizes).length &&
+        !selectedSize
+    ){
+
+        showToast(
+            "Please select a size"
+        );
+
+        return false;
+
+    }
+
+
+    if(
+        Array.isArray(product.colors) &&
+        product.colors.length &&
+        !selectedColor
+    ){
+
+        showToast(
+            "Please select a color"
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================
+   ADD TO CART
+========================= */
 
 window.addToCart =
 function(){
 
-    if(product.sizes &&
-       Object.keys(product.sizes).length &&
-       !selectedSize){
-
-        alert("Please select a size.");
+    if(!validateOptions()){
 
         return;
 
     }
 
-    if(product.colors &&
-       product.colors.length &&
-       !selectedColor){
+    const price =
+        getPrice();
 
-        alert("Please select a color.");
+    if(!price){
+
+        showToast(
+            "Product price is unavailable"
+        );
 
         return;
 
     }
 
 
-    const item = {
-
-        id:product.id,
-
-        name:product.name,
-
-        image:getImages()[0] || "",
-
-        size:selectedSize,
-
-        color:selectedColor,
-
-        price:currentPrice(),
-
-        quantity:quantity
-
-    };
-
-
-    const cart =
+    let cart =
         JSON.parse(
-            localStorage.getItem("zareeCart")
+            localStorage.getItem(
+                CART_KEY
+            )
         ) || [];
 
 
-    cart.push(item);
+    cart.push({
+
+        id:
+            product.id,
+
+        name:
+            product.name ||
+            "Beauty Product",
+
+        image:
+            getImages(product)[0],
+
+        size:
+            selectedSize,
+
+        color:
+            selectedColor,
+
+        price:
+            price,
+
+        quantity:
+            quantity
+
+    });
 
 
     localStorage.setItem(
-        "zareeCart",
+        CART_KEY,
         JSON.stringify(cart)
     );
 
 
-    alert("Product added to cart ❤️");
-
-};
-
-
-/* WHATSAPP */
-
-window.orderWhatsApp =
-function(){
-
-    if(product.sizes &&
-       Object.keys(product.sizes).length &&
-       !selectedSize){
-
-        alert("Please select a size.");
-
-        return;
-
-    }
-
-    if(product.colors &&
-       product.colors.length &&
-       !selectedColor){
-
-        alert("Please select a color.");
-
-        return;
-
-    }
-
-
-    const price =
-        currentPrice();
-
-    const total =
-        price * quantity;
-
-
-    const message =
-
-`Assalam o Alaikum, I want to order:
-
-Product: ${product.name}
-
-Size: ${selectedSize || "N/A"}
-
-Color: ${selectedColor || "N/A"}
-
-Quantity: ${quantity}
-
-Price: Rs. ${price}
-
-Total: Rs. ${total}`;
-
-
-    window.open(
-
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${
-            encodeURIComponent(message)
-        }`,
-
-        "_blank"
-
+    showToast(
+        "Product added to cart"
     );
 
 };
 
 
-/* REVIEWS */
+/* =========================
+   WHATSAPP
+========================= */
+
+window.orderWhatsApp =
+function(){
+
+    if(!validateOptions()){
+
+        return;
+
+    }
+
+    const price =
+        getPrice();
+
+    if(!price){
+
+        showToast(
+            "Product price is unavailable"
+        );
+
+        return;
+
+    }
+
+
+    const subtotal =
+        price * quantity;
+
+
+    const message =
+        "Assalam o Alaikum, I want to order:%0A%0A" +
+
+        "Product: " +
+        encodeURIComponent(
+            product.name ||
+            "Beauty Product"
+        ) +
+        "%0A" +
+
+        "Size: " +
+        encodeURIComponent(
+            selectedSize || "N/A"
+        ) +
+        "%0A" +
+
+        "Color: " +
+        encodeURIComponent(
+            selectedColor || "N/A"
+        ) +
+        "%0A" +
+
+        "Quantity: " +
+        quantity +
+        "%0A" +
+
+        "Price: Rs. " +
+        price +
+        "%0A" +
+
+        "Total: Rs. " +
+        subtotal;
+
+
+    window.open(
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        message,
+        "_blank"
+    );
+
+};
+
+
+/* =========================
+   REVIEWS
+========================= */
 
 async function loadReviews(){
 
     const container =
-        document.getElementById("reviews");
+        document.getElementById(
+            "reviewList"
+        );
 
     try{
 
         const snapshot =
             await getDocs(
-                collection(db,"reviews")
+                collection(
+                    db,
+                    "reviews"
+                )
             );
 
-        let reviews = [];
+        const reviews = [];
 
-        snapshot.forEach(doc => {
 
-            const data = doc.data();
+        snapshot.forEach(
+            reviewDoc => {
 
-            if(data.productId === product.id){
+                const data =
+                    reviewDoc.data();
 
-                reviews.push(data);
+                if(
+                    data.productId ===
+                    productId
+                ){
+
+                    reviews.push(data);
+
+                }
 
             }
+        );
 
-        });
+
+        reviews.sort(
+            (a,b) => {
+
+                return (
+                    Number(
+                        b.createdAt?.seconds ||
+                        0
+                    )
+                    -
+                    Number(
+                        a.createdAt?.seconds ||
+                        0
+                    )
+                );
+
+            }
+        );
 
 
         if(!reviews.length){
 
-            container.innerHTML =
-            "<p>No reviews yet.</p>";
+            container.innerHTML = `
+
+                <div class="empty">
+                    No reviews yet for this product.
+                </div>
+
+            `;
 
             return;
 
         }
 
 
-        container.innerHTML =
-            reviews.map(review => `
+        container.innerHTML = "";
 
-                <div class="review">
+
+        reviews.forEach(
+            review => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "review-card";
+
+                card.innerHTML = `
 
                     <div class="review-name">
-                        ${review.name || "Customer"}
+                        ${escapeHTML(
+                            review.name ||
+                            "Customer"
+                        )}
                     </div>
 
                     <div class="review-stars">
-                        ${stars(review.rating)}
+                        ${getStars(
+                            review.rating
+                        )}
                     </div>
 
                     <div class="review-text">
-                        ${review.text || ""}
+                        ${escapeHTML(
+                            review.text ||
+                            ""
+                        )}
                     </div>
 
-                </div>
+                `;
 
-            `).join("");
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
 
 
     }catch(error){
 
         console.error(error);
 
-        container.innerHTML =
-        "<p>Reviews unavailable.</p>";
+        container.innerHTML = `
+
+            <div class="empty">
+                Unable to load reviews.
+            </div>
+
+        `;
 
     }
 
 }
 
+
+/* =========================
+   ERROR
+========================= */
+
+function showError(message){
+
+    document.getElementById(
+        "loading"
+    ).innerHTML = `
+
+        <h3>${escapeHTML(message)}</h3>
+
+        <p style="margin-top:10px;">
+            <a
+                href="index.html"
+                style="color:#e83e8c;"
+            >
+                ← Back to Zaree Collection
+            </a>
+        </p>
+
+    `;
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    toast.textContent =
+        message;
+
+    toast.style.display =
+        "block";
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+    window.toastTimer =
+        setTimeout(
+            () => {
+
+                toast.style.display =
+                    "none";
+
+            },
+            2500
+        );
+
+}
+
+
+/* =========================
+   START
+========================= */
 
 loadProduct();
 
