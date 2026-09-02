@@ -13,11 +13,30 @@
     padding:0;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:Arial, sans-serif;
     background:#fff;
     color:#222;
 }
+
+a{
+    color:inherit;
+}
+
+/* TOP BAR */
+
+.topbar{
+    background:#f8e8ef;
+    text-align:center;
+    padding:8px;
+    font-size:13px;
+}
+
+/* HEADER */
 
 header{
     background:#fff;
@@ -27,13 +46,6 @@ header{
     z-index:100;
 }
 
-.topbar{
-    background:#f8e8ef;
-    text-align:center;
-    padding:8px;
-    font-size:13px;
-}
-
 .nav{
     max-width:1200px;
     margin:auto;
@@ -41,13 +53,14 @@ header{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:15px;
+    gap:20px;
 }
 
 .logo{
+    text-decoration:none;
     font-size:23px;
     font-weight:bold;
-    color:#222;
+    white-space:nowrap;
 }
 
 .logo span{
@@ -61,8 +74,12 @@ header{
 
 .nav-links a{
     text-decoration:none;
-    color:#222;
+    color:#333;
     font-size:14px;
+}
+
+.nav-links a:hover{
+    color:#e83e8c;
 }
 
 .cart-btn{
@@ -72,31 +89,53 @@ header{
     padding:10px 16px;
     border-radius:25px;
     cursor:pointer;
+    white-space:nowrap;
 }
 
-.search-box{
-    max-width:600px;
+/* SEARCH */
+
+.search-area{
+    max-width:700px;
     margin:20px auto;
     padding:0 20px;
 }
 
-.search-box input{
+.search-box{
     width:100%;
     padding:14px 18px;
     border:1px solid #ddd;
     border-radius:30px;
     outline:none;
+    font-size:15px;
 }
+
+.search-box:focus{
+    border-color:#e83e8c;
+}
+
+/* HERO */
 
 .hero{
     background:linear-gradient(135deg,#fff5f8,#fff);
-    padding:60px 20px;
+    padding:70px 20px;
     text-align:center;
 }
 
+.hero-badge{
+    display:inline-block;
+    color:#e83e8c;
+    background:#fff;
+    border:1px solid #f1d5e0;
+    padding:7px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
 .hero h1{
-    font-size:38px;
-    margin-bottom:12px;
+    font-size:40px;
+    margin-bottom:14px;
 }
 
 .hero h1 span{
@@ -104,27 +143,47 @@ header{
 }
 
 .hero p{
+    max-width:650px;
+    margin:auto;
     color:#666;
+    line-height:1.7;
 }
+
+.hero-btn{
+    display:inline-block;
+    margin-top:25px;
+    background:#e83e8c;
+    color:#fff;
+    text-decoration:none;
+    padding:13px 25px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+/* SECTION */
 
 .section{
     max-width:1200px;
     margin:auto;
-    padding:45px 20px;
+    padding:50px 20px;
 }
 
-.section-title{
+.section-head{
     text-align:center;
     margin-bottom:30px;
 }
 
-.section-title h2{
+.section-title{
     font-size:28px;
 }
 
-.section-title p{
+.section-title span{
+    color:#e83e8c;
+}
+
+.section-subtitle{
     color:#777;
-    margin-top:7px;
+    margin-top:8px;
 }
 
 /* PRODUCTS */
@@ -147,7 +206,12 @@ header{
 
 .product-card:hover{
     transform:translateY(-4px);
-    box-shadow:0 8px 25px rgba(0,0,0,.1);
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+}
+
+.product-image-wrap{
+    position:relative;
+    background:#fafafa;
 }
 
 .product-image{
@@ -197,21 +261,158 @@ header{
     gap:20px;
 }
 
-.why-box{
+.why-card{
     background:#fff;
-    padding:25px;
+    padding:28px;
     border-radius:15px;
     text-align:center;
     border:1px solid #f1e1e7;
 }
 
-.why-box h3{
-    margin:10px 0;
+.why-icon{
+    font-size:32px;
 }
 
-.why-box p{
+.why-card h3{
+    margin:12px 0 8px;
+}
+
+.why-card p{
     color:#777;
     font-size:14px;
+    line-height:1.6;
+}
+
+/* REVIEWS */
+
+.review-section{
+    background:#fff;
+}
+
+.review-box{
+    max-width:650px;
+    margin:0 auto 35px;
+    background:#fff8fa;
+    border:1px solid #f1e1e7;
+    border-radius:15px;
+    padding:25px;
+}
+
+.review-box h3{
+    margin-bottom:18px;
+}
+
+.review-form{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.form-input,
+.form-textarea{
+    width:100%;
+    padding:13px 15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    font-family:inherit;
+}
+
+.form-input:focus,
+.form-textarea:focus{
+    border-color:#e83e8c;
+}
+
+.form-textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.option-label{
+    display:block;
+    font-size:14px;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+.stars-input{
+    display:flex;
+    gap:4px;
+}
+
+.star-btn{
+    border:0;
+    background:none;
+    color:#ccc;
+    font-size:27px;
+    cursor:pointer;
+}
+
+.star-btn.active{
+    color:#f5b400;
+}
+
+.submit-review{
+    border:0;
+    background:#e83e8c;
+    color:#fff;
+    padding:13px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.review-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.review-card{
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:20px;
+    background:#fff;
+}
+
+.review-name{
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.review-product{
+    font-size:12px;
+    color:#888;
+    margin-bottom:8px;
+}
+
+.review-stars{
+    color:#f5b400;
+    margin-bottom:10px;
+}
+
+.review-text{
+    color:#666;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* CONTACT */
+
+.contact{
+    background:#fff8fa;
+    text-align:center;
+}
+
+.whatsapp-main{
+    display:inline-block;
+    margin-top:20px;
+    padding:14px 25px;
+    border-radius:30px;
+    background:#25D366;
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 /* FOOTER */
@@ -219,12 +420,40 @@ header{
 footer{
     background:#222;
     color:#fff;
-    text-align:center;
-    padding:30px 20px;
+    padding:35px 20px 20px;
+}
+
+.footer-inner{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:center;
+}
+
+.footer-logo{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.footer-text{
+    color:#bbb;
+    font-size:13px;
+    margin-top:6px;
 }
 
 footer span{
     color:#e83e8c;
+}
+
+.copyright{
+    text-align:center;
+    color:#999;
+    border-top:1px solid #444;
+    margin-top:25px;
+    padding-top:18px;
+    font-size:12px;
 }
 
 /* CART */
@@ -234,7 +463,7 @@ footer span{
     inset:0;
     background:rgba(0,0,0,.45);
     display:none;
-    z-index:200;
+    z-index:500;
 }
 
 .cart-panel{
@@ -242,13 +471,13 @@ footer span{
     right:0;
     top:0;
     height:100%;
-    width:min(420px,100%);
+    width:min(430px,100%);
     background:#fff;
     padding:20px;
     overflow-y:auto;
 }
 
-.cart-head{
+.cart-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -258,17 +487,18 @@ footer span{
 .close-cart{
     border:0;
     background:#eee;
-    width:35px;
-    height:35px;
+    width:36px;
+    height:36px;
     border-radius:50%;
     cursor:pointer;
+    font-size:20px;
 }
 
 .cart-item{
     display:flex;
     gap:12px;
     border-bottom:1px solid #eee;
-    padding:12px 0;
+    padding:13px 0;
 }
 
 .cart-item img{
@@ -287,14 +517,15 @@ footer span{
 }
 
 .cart-item-info p{
-    font-size:13px;
+    font-size:12px;
     color:#777;
+    margin-top:3px;
 }
 
 .cart-item-price{
     color:#e83e8c;
     font-weight:bold;
-    margin-top:5px;
+    margin-top:6px;
 }
 
 .remove-btn{
@@ -302,15 +533,18 @@ footer span{
     background:none;
     color:#d33;
     cursor:pointer;
+    font-size:18px;
 }
 
 .cart-total{
+    display:flex;
+    justify-content:space-between;
     font-size:20px;
     font-weight:bold;
-    margin:20px 0;
+    margin:22px 0;
 }
 
-.whatsapp-btn{
+.cart-whatsapp-btn{
     width:100%;
     padding:14px;
     border:0;
@@ -328,41 +562,116 @@ footer span{
     color:#777;
 }
 
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%);
+    background:#222;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:25px;
+    display:none;
+    z-index:1000;
+}
+
 /* MOBILE */
 
-@media(max-width:800px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .hero h1{
-        font-size:30px;
-    }
+@media(max-width:900px){
 
     .products-grid{
         grid-template-columns:repeat(2,1fr);
         gap:12px;
     }
 
-    .product-image{
-        height:180px;
+    .review-list{
+        grid-template-columns:1fr 1fr;
     }
 
-    .product-info{
-        padding:10px;
+    .nav-links{
+        display:none;
+    }
+}
+
+@media(max-width:600px){
+
+    .nav{
+        padding:13px 12px;
     }
 
-    .product-name{
+    .logo{
+        font-size:19px;
+    }
+
+    .cart-btn{
+        padding:9px 12px;
+        font-size:12px;
+    }
+
+    .hero{
+        padding:50px 18px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .hero p{
         font-size:14px;
     }
 
+    .section{
+        padding:40px 12px;
+    }
+
+    .section-title{
+        font-size:24px;
+    }
+
+    /* EXACTLY 2 PRODUCTS ON MOBILE */
+
+    .products-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+    }
+
+    .product-image{
+        height:175px;
+    }
+
+    .product-info{
+        padding:9px;
+    }
+
+    .product-name{
+        font-size:13px;
+    }
+
+    .product-category{
+        font-size:10px;
+    }
+
+    .rating{
+        font-size:12px;
+    }
+
     .price{
-        font-size:16px;
+        font-size:15px;
     }
 
     .why-grid{
         grid-template-columns:1fr;
+    }
+
+    .review-list{
+        grid-template-columns:1fr;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        text-align:center;
     }
 }
 </style>
@@ -370,23 +679,28 @@ footer span{
 
 <body>
 
+<!-- TOP BAR -->
+
 <div class="topbar">
-    ✨ Welcome to Zaree Collection ✨
+    ✨ Premium Beauty Products • Easy WhatsApp Ordering
 </div>
+
+<!-- HEADER -->
 
 <header>
 
 <div class="nav">
 
-<div class="logo">
+<a href="#" class="logo">
     Zaree <span>Collection</span>
-</div>
+</a>
 
-<div class="nav-links">
+<nav class="nav-links">
     <a href="#">Home</a>
     <a href="#products">Products</a>
-    <a href="#why">Why Us</a>
-</div>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+</nav>
 
 <button class="cart-btn" onclick="openCart()">
     🛒 Cart (<span id="cartCount">0</span>)
@@ -396,97 +710,339 @@ footer span{
 
 </header>
 
-<div class="search-box">
-    <input
-        type="text"
-        id="search"
-        placeholder="Search products..."
-        oninput="searchProducts()"
-    >
+<!-- SEARCH -->
+
+<div class="search-area">
+
+<input
+    id="searchInput"
+    class="search-box"
+    type="search"
+    placeholder="🔎 Search beauty products..."
+    oninput="searchProducts()"
+>
+
 </div>
 
+<!-- HERO -->
+
 <section class="hero">
-    <h1>Discover Your <span>Beauty</span></h1>
-    <p>Premium beauty products from Zaree Collection</p>
+
+<span class="hero-badge">
+    ZAREE COLLECTION
+</span>
+
+<h1>
+    Discover Your <span>Beauty</span>
+</h1>
+
+<p>
+    Explore beautiful makeup, skincare, fragrances and more.
+    Shop your favorite beauty products with Zaree Collection.
+</p>
+
+<a href="#products" class="hero-btn">
+    Shop Now →
+</a>
+
 </section>
+
+<!-- PRODUCTS -->
 
 <section class="section" id="products">
 
-<div class="section-title">
-    <h2>Our Products</h2>
-    <p>Choose your favorite product</p>
+<div class="section-head">
+
+<h2 class="section-title">
+    Our <span>Products</span>
+</h2>
+
+<p class="section-subtitle">
+    Find something beautiful for yourself.
+</p>
+
 </div>
 
-<div class="products-grid" id="productsGrid">
-    <div class="empty">Loading products...</div>
+<div
+    class="products-grid"
+    id="productsGrid"
+>
+
+<div class="loading">
+    Loading products...
+</div>
+
 </div>
 
 </section>
 
-<section class="why" id="why">
+<!-- WHY -->
+
+<section class="why">
 
 <div class="section">
 
-<div class="section-title">
-    <h2>Why Zaree Collection?</h2>
+<div class="section-head">
+
+<h2 class="section-title">
+    Why Shop With <span>Zaree?</span>
+</h2>
+
 </div>
 
 <div class="why-grid">
 
-<div class="why-box">
-    <div style="font-size:30px;">✨</div>
-    <h3>Quality Products</h3>
-    <p>We provide carefully selected beauty products.</p>
-</div>
+<div class="why-card">
 
-<div class="why-box">
-    <div style="font-size:30px;">💖</div>
-    <h3>Best Prices</h3>
-    <p>Beautiful products at reasonable prices.</p>
-</div>
+<div class="why-icon">✨</div>
 
-<div class="why-box">
-    <div style="font-size:30px;">📦</div>
-    <h3>Easy Ordering</h3>
-    <p>Order directly through WhatsApp.</p>
-</div>
+<h3>Quality Products</h3>
+
+<p>
+Carefully selected beauty products for our customers.
+</p>
 
 </div>
+
+<div class="why-card">
+
+<div class="why-icon">💬</div>
+
+<h3>Easy Ordering</h3>
+
+<p>
+Order directly through WhatsApp quickly and easily.
+</p>
+
+</div>
+
+<div class="why-card">
+
+<div class="why-icon">📱</div>
+
+<h3>Mobile Friendly</h3>
+
+<p>
+Shop comfortably from your mobile phone or computer.
+</p>
+
+</div>
+
+</div>
+
 </div>
 
 </section>
 
-<footer>
-    © 2026 <span>Zaree Collection</span> — All Rights Reserved
-</footer>
+<!-- REVIEWS -->
 
+<section class="section review-section" id="reviews">
+
+<div class="section-head">
+
+<h2 class="section-title">
+    Customer <span>Reviews</span>
+</h2>
+
+<p class="section-subtitle">
+    Share your experience with Zaree Collection.
+</p>
+
+</div>
+
+<div class="review-box">
+
+<h3>Write a Review</h3>
+
+<form
+    class="review-form"
+    onsubmit="submitReview(event)"
+>
+
+<input
+    id="reviewName"
+    class="form-input"
+    type="text"
+    placeholder="Your name"
+    maxlength="60"
+    required
+>
+
+<select
+    id="reviewProduct"
+    class="form-input"
+    required
+>
+
+<option value="">
+    Select product
+</option>
+
+</select>
+
+<div>
+
+<label class="option-label">
+    Your Rating
+</label>
+
+<div class="stars-input">
+
+<button type="button" class="star-btn" onclick="setStars(1)">★</button>
+<button type="button" class="star-btn" onclick="setStars(2)">★</button>
+<button type="button" class="star-btn" onclick="setStars(3)">★</button>
+<button type="button" class="star-btn" onclick="setStars(4)">★</button>
+<button type="button" class="star-btn" onclick="setStars(5)">★</button>
+
+</div>
+
+</div>
+
+<textarea
+    id="reviewText"
+    class="form-textarea"
+    placeholder="Write your review..."
+    maxlength="1000"
+    required
+></textarea>
+
+<button
+    id="reviewSubmitBtn"
+    class="submit-review"
+    type="submit"
+>
+    Submit Review
+</button>
+
+</form>
+
+</div>
+
+<div id="reviewList" class="review-list">
+
+<div class="loading">
+    Loading reviews...
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<div class="section">
+
+<h2>Need Help?</h2>
+
+<p style="margin-top:10px;color:#777;">
+    Contact Zaree Collection directly on WhatsApp.
+</p>
+
+<a
+    class="whatsapp-main"
+    href="https://wa.me/923249689534"
+    target="_blank"
+>
+    💬 WhatsApp Us
+</a>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-inner">
+
+<div>
+
+<div class="footer-logo">
+    Zaree Collection
+</div>
+
+<div class="footer-text">
+    Your beauty, your style.
+</div>
+
+</div>
+
+<div class="footer-text">
+    Makeup • Skincare • Fragrances • Beauty
+</div>
+
+</div>
+
+<div class="copyright">
+    © 2026 <span>Zaree Collection</span>. All Rights Reserved.
+</div>
+
+</footer>
 
 <!-- CART -->
 
-<div class="cart-overlay" id="cartOverlay">
+<div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="overlayClick(event)"
+>
 
-<div class="cart-panel">
+<div
+    class="cart-panel"
+    onclick="event.stopPropagation()"
+>
 
-<div class="cart-head">
-    <h2>Your Cart</h2>
-    <button class="close-cart" onclick="closeCart()">✕</button>
-</div>
+<div class="cart-header">
 
-<div id="cartItems"></div>
+<h2>Your Cart</h2>
 
-<div class="cart-total">
-    Total: Rs. <span id="cartTotal">0</span>
-</div>
-
-<button class="whatsapp-btn" onclick="orderCartWhatsApp()">
-    📲 WhatsApp Order
+<button
+    class="close-cart"
+    onclick="closeCart()"
+>
+    ×
 </button>
 
 </div>
+
+<div
+    id="cartItems"
+    class="cart-items"
+></div>
+
+<div class="cart-total">
+
+<span>Total</span>
+
+<span>
+    Rs. <span id="cartTotal">0</span>
+</span>
+
 </div>
+
+<button
+    id="cartWhatsAppBtn"
+    class="cart-whatsapp-btn"
+    onclick="orderCartOnWhatsApp()"
+>
+    💬 WhatsApp Order
+</button>
+
+</div>
+
+</div>
+
+<div id="toast" class="toast"></div>
 
 
 <script type="module">
+
+/* =========================
+   FIREBASE
+========================= */
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -494,25 +1050,40 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
     getFirestore,
     collection,
-    getDocs
+    getDocs,
+    addDoc,
+    serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
-
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "zaree-collection-5589.firebaseapp.com",
-    projectId: "zaree-collection-5589",
-    storageBucket: "zaree-collection-5589.firebasestorage.app",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+
+    apiKey:
+    "AIzaSyAmMUYbXG7XrdJrjBlNZ_9MkyHA9P9aTqA",
+
+    authDomain:
+    "zaree-collection-5589b.firebaseapp.com",
+
+    projectId:
+    "zaree-collection-5589b",
+
+    storageBucket:
+    "zaree-collection-5589b.firebasestorage.app",
+
+    messagingSenderId:
+    "724088426576",
+
+    appId:
+    "1:724088426576:web:d781393dfb54e2e46ec155",
+
+    measurementId:
+    "G-CHHN119YVR"
 };
 
+
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
 
 
@@ -522,8 +1093,124 @@ const db = getFirestore(app);
 
 const WHATSAPP_NUMBER = "923249689534";
 
+const CART_KEY = "zareeCart";
+
 let allProducts = [];
-let cart = JSON.parse(localStorage.getItem("zareeCart")) || [];
+
+let cart =
+    JSON.parse(
+        localStorage.getItem(CART_KEY)
+    ) || [];
+
+let selectedStars = 0;
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function getImage(product){
+
+    if(
+        Array.isArray(product.images)
+        &&
+        product.images.length
+    ){
+
+        return product.images[0];
+
+    }
+
+    return (
+        product.image ||
+        product.imageUrl ||
+        "https://via.placeholder.com/600x600?text=Zaree+Collection"
+    );
+
+}
+
+
+function getStartingPrice(product){
+
+    if(
+        product.sizes &&
+        typeof product.sizes === "object"
+    ){
+
+        const prices =
+            Object.values(product.sizes)
+            .map(size => {
+
+                if(
+                    typeof size === "object"
+                ){
+
+                    return Number(size.price);
+
+                }
+
+                return Number(size);
+
+            })
+            .filter(
+                price =>
+                Number.isFinite(price)
+            );
+
+        if(prices.length){
+
+            return Math.min(...prices);
+
+        }
+
+    }
+
+    return Number(product.price || 0);
+
+}
+
+
+function getStars(rating){
+
+    const number =
+        Math.max(
+            0,
+            Math.min(
+                5,
+                Number(rating || 0)
+            )
+        );
+
+    let html = "";
+
+    for(
+        let i = 1;
+        i <= 5;
+        i++
+    ){
+
+        html +=
+            i <= number
+            ? "★"
+            : "☆";
+
+    }
+
+    return html;
+
+}
 
 
 /* =========================
@@ -532,161 +1219,180 @@ let cart = JSON.parse(localStorage.getItem("zareeCart")) || [];
 
 async function loadProducts(){
 
+    const grid =
+        document.getElementById(
+            "productsGrid"
+        );
+
     try{
 
-        const snapshot = await getDocs(
-            collection(db,"products")
-        );
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "products"
+                )
+            );
 
         allProducts = [];
 
         snapshot.forEach(doc => {
 
             allProducts.push({
-                id:doc.id,
+
+                id: doc.id,
+
                 ...doc.data()
+
             });
 
         });
 
         displayProducts(allProducts);
+
+        fillReviewProducts();
+
         updateCart();
+
+        loadReviews();
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Firebase error:",
+            error
+        );
 
-        document.getElementById("productsGrid").innerHTML =
-        `<div class="empty">
-            Unable to load products.
-        </div>`;
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    Products could not be loaded
+                </h3>
+
+                <p style="margin-top:8px;">
+                    Please check Firebase
+                    Firestore settings.
+                </p>
+
+            </div>
+
+        `;
 
     }
+
 }
 
 
 /* =========================
-   IMAGE
-========================= */
-
-function getImage(product){
-
-    if(product.images && product.images.length){
-        return product.images[0];
-    }
-
-    return product.image ||
-           product.imageUrl ||
-           "https://via.placeholder.com/500x500?text=Zaree+Collection";
-}
-
-
-/* =========================
-   PRICE
-========================= */
-
-function getStartingPrice(product){
-
-    if(product.sizes){
-
-        const prices = Object.values(product.sizes)
-            .map(x => Number(x.price))
-            .filter(x => !isNaN(x));
-
-        if(prices.length){
-            return Math.min(...prices);
-        }
-    }
-
-    return Number(product.price || 0);
-}
-
-
-/* =========================
-   RATING
-========================= */
-
-function getStars(rating){
-
-    rating = Number(rating || 0);
-
-    let html = "";
-
-    for(let i=1;i<=5;i++){
-
-        html += i <= rating ? "★" : "☆";
-
-    }
-
-    return html;
-}
-
-
-/* =========================
-   DISPLAY
+   DISPLAY PRODUCTS
 ========================= */
 
 function displayProducts(products){
 
     const grid =
-        document.getElementById("productsGrid");
+        document.getElementById(
+            "productsGrid"
+        );
 
     if(!products.length){
 
-        grid.innerHTML =
-        `<div class="empty">
-            No products found.
-        </div>`;
+        grid.innerHTML = `
+
+            <div class="empty">
+                No products found.
+            </div>
+
+        `;
 
         return;
+
     }
 
     grid.innerHTML = "";
 
     products.forEach(product => {
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
 
-        card.className = "product-card";
+        card.className =
+            "product-card";
 
         const price =
             getStartingPrice(product);
 
         card.innerHTML = `
 
-            <img
-                class="product-image"
-                src="${getImage(product)}"
-                alt="${product.name || "Product"}"
-            >
+            <div class="product-image-wrap">
+
+                <img
+                    class="product-image"
+                    src="${escapeHTML(
+                        getImage(product)
+                    )}"
+                    alt="${escapeHTML(
+                        product.name ||
+                        "Beauty Product"
+                    )}"
+                    loading="lazy"
+                    onerror="
+                        this.src='https://via.placeholder.com/600x600?text=Zaree+Collection'
+                    "
+                >
+
+            </div>
 
             <div class="product-info">
 
                 <div class="product-name">
-                    ${product.name || "Unnamed Product"}
+                    ${escapeHTML(
+                        product.name ||
+                        "Unnamed Product"
+                    )}
                 </div>
 
                 <div class="product-category">
-                    ${product.category || "Beauty"}
+                    ${escapeHTML(
+                        product.category ||
+                        "Beauty"
+                    )}
                 </div>
 
                 <div class="rating">
-                    ${getStars(product.rating)}
+                    ${getStars(
+                        product.rating
+                    )}
                 </div>
 
                 <div class="price">
-                    Rs. ${price.toLocaleString()}
+
+                    ${
+                        price > 0
+                        ? "Rs. " +
+                          price.toLocaleString()
+                        : "Price unavailable"
+                    }
+
                 </div>
 
             </div>
+
         `;
 
-        card.onclick = () => {
+        card.addEventListener(
+            "click",
+            () => {
 
-            window.location.href =
-                `product.html?id=${product.id}`;
+                window.location.href =
+                    "product.html?id=" +
+                    encodeURIComponent(
+                        product.id
+                    );
 
-        };
+            }
+        );
 
         grid.appendChild(card);
 
@@ -699,30 +1405,53 @@ function displayProducts(products){
    SEARCH
 ========================= */
 
-window.searchProducts = function(){
+window.searchProducts =
+function(){
 
     const value =
-        document.getElementById("search")
+        document
+        .getElementById(
+            "searchInput"
+        )
         .value
         .toLowerCase()
         .trim();
 
     const filtered =
-        allProducts.filter(product => {
+        allProducts.filter(
+            product => {
 
-            return (
-                (product.name || "")
-                    .toLowerCase()
-                    .includes(value)
-                ||
-                (product.category || "")
-                    .toLowerCase()
-                    .includes(value)
-            );
+                const name =
+                    String(
+                        product.name || ""
+                    )
+                    .toLowerCase();
 
-        });
+                const category =
+                    String(
+                        product.category || ""
+                    )
+                    .toLowerCase();
+
+                const description =
+                    String(
+                        product.description || ""
+                    )
+                    .toLowerCase();
+
+                return (
+                    name.includes(value)
+                    ||
+                    category.includes(value)
+                    ||
+                    description.includes(value)
+                );
+
+            }
+        );
 
     displayProducts(filtered);
+
 };
 
 
@@ -733,7 +1462,7 @@ window.searchProducts = function(){
 function saveCart(){
 
     localStorage.setItem(
-        "zareeCart",
+        CART_KEY,
         JSON.stringify(cart)
     );
 
@@ -742,8 +1471,19 @@ function saveCart(){
 
 function updateCart(){
 
-    document.getElementById("cartCount")
-        .textContent = cart.length;
+    const count =
+        cart.reduce(
+            (sum,item) =>
+                sum +
+                Number(
+                    item.quantity || 1
+                ),
+            0
+        );
+
+    document.getElementById(
+        "cartCount"
+    ).textContent = count;
 
     renderCart();
 
@@ -753,69 +1493,126 @@ function updateCart(){
 function renderCart(){
 
     const container =
-        document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
 
     const totalElement =
-        document.getElementById("cartTotal");
+        document.getElementById(
+            "cartTotal"
+        );
 
     if(!cart.length){
 
-        container.innerHTML =
-        `<div class="empty">
-            Your cart is empty.
-        </div>`;
+        container.innerHTML = `
+
+            <div class="empty">
+                Your cart is empty.
+            </div>
+
+        `;
 
         totalElement.textContent = "0";
 
         return;
+
     }
 
     let total = 0;
 
     container.innerHTML = "";
 
-    cart.forEach((item,index) => {
+    cart.forEach(
+        (item,index) => {
 
-        total += Number(item.price || 0) *
-                 Number(item.quantity || 1);
+            const quantity =
+                Number(
+                    item.quantity || 1
+                );
 
-        const div =
-            document.createElement("div");
+            const price =
+                Number(
+                    item.price || 0
+                );
 
-        div.className = "cart-item";
+            const subtotal =
+                price * quantity;
 
-        div.innerHTML = `
+            total += subtotal;
 
-            <img src="${item.image}">
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-            <div class="cart-item-info">
+            div.className =
+                "cart-item";
 
-                <h4>${item.name}</h4>
+            div.innerHTML = `
 
-                <p>Size: ${item.size || "Not selected"}</p>
+                <img
+                    src="${escapeHTML(
+                        item.image ||
+                        "https://via.placeholder.com/100"
+                    )}"
+                    alt=""
+                    onerror="
+                        this.src='https://via.placeholder.com/100'
+                    "
+                >
 
-                <p>Color: ${item.color || "Not selected"}</p>
+                <div class="cart-item-info">
 
-                <p>Qty: ${item.quantity || 1}</p>
+                    <h4>
+                        ${escapeHTML(
+                            item.name
+                        )}
+                    </h4>
 
-                <div class="cart-item-price">
-                    Rs. ${(Number(item.price) *
-                    Number(item.quantity || 1))
-                    .toLocaleString()}
+                    <p>
+                        Size:
+                        ${escapeHTML(
+                            item.size ||
+                            "N/A"
+                        )}
+                    </p>
+
+                    <p>
+                        Color:
+                        ${escapeHTML(
+                            item.color ||
+                            "N/A"
+                        )}
+                    </p>
+
+                    <p>
+                        Quantity:
+                        ${quantity}
+                    </p>
+
+                    <div class="cart-item-price">
+                        Rs.
+                        ${subtotal.toLocaleString()}
+                    </div>
+
                 </div>
 
-            </div>
+                <button
+                    class="remove-btn"
+                    onclick="
+                        removeCartItem(${index})
+                    "
+                    aria-label="Remove"
+                >
+                    ✕
+                </button>
 
-            <button
-                class="remove-btn"
-                onclick="removeCartItem(${index})">
-                ✕
-            </button>
-        `;
+            `;
 
-        container.appendChild(div);
+            container.appendChild(div);
 
-    });
+        }
+    );
 
     totalElement.textContent =
         total.toLocaleString();
@@ -823,43 +1620,75 @@ function renderCart(){
 }
 
 
-window.removeCartItem = function(index){
+window.removeCartItem =
+function(index){
 
-    cart.splice(index,1);
+    cart.splice(
+        index,
+        1
+    );
 
     saveCart();
+
     updateCart();
+
+    showToast(
+        "Product removed from cart"
+    );
 
 };
 
 
-window.openCart = function(){
+window.openCart =
+function(){
 
-    document.getElementById("cartOverlay")
-        .style.display = "block";
+    document.getElementById(
+        "cartOverlay"
+    ).style.display = "block";
 
     renderCart();
 
 };
 
 
-window.closeCart = function(){
+window.closeCart =
+function(){
 
-    document.getElementById("cartOverlay")
-        .style.display = "none";
+    document.getElementById(
+        "cartOverlay"
+    ).style.display = "none";
+
+};
+
+
+window.overlayClick =
+function(event){
+
+    if(
+        event.target.id ===
+        "cartOverlay"
+    ){
+
+        closeCart();
+
+    }
 
 };
 
 
 /* =========================
-   WHATSAPP CART ORDER
+   WHATSAPP ORDER
 ========================= */
 
-window.orderCartWhatsApp = function(){
+window.orderCartOnWhatsApp =
+function(){
 
     if(!cart.length){
 
-        alert("Your cart is empty.");
+        showToast(
+            "Your cart is empty"
+        );
+
         return;
 
     }
@@ -869,25 +1698,45 @@ window.orderCartWhatsApp = function(){
 
     let total = 0;
 
-    cart.forEach((item,index) => {
+    cart.forEach(
+        (item,index) => {
 
-        const quantity =
-            Number(item.quantity || 1);
+            const quantity =
+                Number(
+                    item.quantity || 1
+                );
 
-        const itemTotal =
-            Number(item.price) * quantity;
+            const price =
+                Number(
+                    item.price || 0
+                );
 
-        total += itemTotal;
+            const subtotal =
+                price * quantity;
 
-        message +=
-        `${index+1}. ${item.name}%0A` +
-        `Size: ${item.size || "N/A"}%0A` +
-        `Color: ${item.color || "N/A"}%0A` +
-        `Quantity: ${quantity}%0A` +
-        `Price: Rs. ${item.price}%0A` +
-        `Subtotal: Rs. ${itemTotal}%0A%0A`;
+            total += subtotal;
 
-    });
+            message +=
+                `${index + 1}. ` +
+                `${item.name}%0A` +
+
+                `Size: ` +
+                `${item.size || "N/A"}%0A` +
+
+                `Color: ` +
+                `${item.color || "N/A"}%0A` +
+
+                `Quantity: ` +
+                `${quantity}%0A` +
+
+                `Price: Rs. ` +
+                `${price}%0A` +
+
+                `Subtotal: Rs. ` +
+                `${subtotal}%0A%0A`;
+
+        }
+    );
 
     message +=
         `Total: Rs. ${total}`;
@@ -899,6 +1748,392 @@ window.orderCartWhatsApp = function(){
 
 };
 
+
+/* =========================
+   REVIEW PRODUCTS
+========================= */
+
+function fillReviewProducts(){
+
+    const select =
+        document.getElementById(
+            "reviewProduct"
+        );
+
+    select.innerHTML = `
+
+        <option value="">
+            Select product
+        </option>
+
+    `;
+
+    allProducts.forEach(
+        product => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                product.id;
+
+            option.textContent =
+                product.name ||
+                "Unnamed Product";
+
+            select.appendChild(option);
+
+        }
+    );
+
+}
+
+
+/* =========================
+   STAR RATING
+========================= */
+
+window.setStars =
+function(number){
+
+    selectedStars =
+        Number(number);
+
+    document
+        .querySelectorAll(
+            ".star-btn"
+        )
+        .forEach(
+            (button,index) => {
+
+                button.classList.toggle(
+                    "active",
+                    index < selectedStars
+                );
+
+            }
+        );
+
+};
+
+
+/* =========================
+   SUBMIT REVIEW
+========================= */
+
+window.submitReview =
+async function(event){
+
+    event.preventDefault();
+
+    const button =
+        document.getElementById(
+            "reviewSubmitBtn"
+        );
+
+    const name =
+        document.getElementById(
+            "reviewName"
+        ).value.trim();
+
+    const productId =
+        document.getElementById(
+            "reviewProduct"
+        ).value;
+
+    const text =
+        document.getElementById(
+            "reviewText"
+        ).value.trim();
+
+    if(selectedStars < 1){
+
+        showToast(
+            "Please select a rating"
+        );
+
+        return;
+
+    }
+
+    if(!productId){
+
+        showToast(
+            "Please select a product"
+        );
+
+        return;
+
+    }
+
+    button.disabled = true;
+
+    button.textContent =
+        "Submitting...";
+
+    try{
+
+        await addDoc(
+            collection(
+                db,
+                "reviews"
+            ),
+            {
+
+                name: name,
+
+                productId:
+                    productId,
+
+                rating:
+                    selectedStars,
+
+                text: text,
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+        document
+            .getElementById(
+                "reviewName"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "reviewProduct"
+            )
+            .value = "";
+
+        document
+            .getElementById(
+                "reviewText"
+            )
+            .value = "";
+
+        setStars(0);
+
+        showToast(
+            "Review submitted successfully"
+        );
+
+        loadReviews();
+
+    }catch(error){
+
+        console.error(
+            "Review error:",
+            error
+        );
+
+        showToast(
+            "Unable to submit review"
+        );
+
+    }finally{
+
+        button.disabled = false;
+
+        button.textContent =
+            "Submit Review";
+
+    }
+
+};
+
+
+/* =========================
+   LOAD REVIEWS
+========================= */
+
+async function loadReviews(){
+
+    const container =
+        document.getElementById(
+            "reviewList"
+        );
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "reviews"
+                )
+            );
+
+        const reviews = [];
+
+        snapshot.forEach(
+            doc => {
+
+                reviews.push({
+
+                    id: doc.id,
+
+                    ...doc.data()
+
+                });
+
+            }
+        );
+
+        reviews.sort(
+            (a,b) => {
+
+                const aTime =
+                    a.createdAt?.seconds ||
+                    0;
+
+                const bTime =
+                    b.createdAt?.seconds ||
+                    0;
+
+                return bTime - aTime;
+
+            }
+        );
+
+        if(!reviews.length){
+
+            container.innerHTML = `
+
+                <div class="empty">
+                    No reviews yet.
+                    Be the first to review!
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+        container.innerHTML = "";
+
+        reviews.forEach(
+            review => {
+
+                const product =
+                    allProducts.find(
+                        item =>
+                            item.id ===
+                            review.productId
+                    );
+
+                const productName =
+                    product?.name ||
+                    "Beauty Product";
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+                div.className =
+                    "review-card";
+
+                div.innerHTML = `
+
+                    <div class="review-name">
+                        ${escapeHTML(
+                            review.name ||
+                            "Customer"
+                        )}
+                    </div>
+
+                    <div class="review-product">
+                        ${escapeHTML(
+                            productName
+                        )}
+                    </div>
+
+                    <div class="review-stars">
+                        ${getStars(
+                            review.rating
+                        )}
+                    </div>
+
+                    <div class="review-text">
+                        ${escapeHTML(
+                            review.text ||
+                            ""
+                        )}
+                    </div>
+
+                `;
+
+                container.appendChild(
+                    div
+                );
+
+            }
+        );
+
+    }catch(error){
+
+        console.error(
+            "Reviews error:",
+            error
+        );
+
+        container.innerHTML = `
+
+            <div class="empty">
+                Reviews could not be loaded.
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    toast.textContent =
+        message;
+
+    toast.style.display =
+        "block";
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+    window.toastTimer =
+        setTimeout(
+            () => {
+
+                toast.style.display =
+                    "none";
+
+            },
+            2500
+        );
+
+}
+
+
+/* =========================
+   START
+========================= */
 
 loadProducts();
 
