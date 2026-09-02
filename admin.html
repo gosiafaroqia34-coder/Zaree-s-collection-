@@ -177,30 +177,110 @@ header{
     font-size:15px;
 }
 
-.form-group input[type="file"]{
-    background:#fff;
-    padding:10px;
-}
-
 .form-group textarea{
-    min-height:100px;
+    min-height:110px;
     resize:vertical;
 }
 
-.image-help{
-    margin-top:7px;
+.help{
+    margin-top:6px;
     color:#777;
     font-size:13px;
 }
 
-.image-preview{
-    display:none;
-    width:150px;
-    height:150px;
-    margin-top:12px;
+/* PRICE BOX */
+
+.size-box{
+    border:1px solid #eee;
+    padding:15px;
     border-radius:10px;
-    object-fit:cover;
+    background:#fffafb;
+}
+
+.size-box h3{
+    margin-bottom:12px;
+    color:#c2185b;
+    font-size:16px;
+}
+
+.size-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.size-row label{
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:5px;
+    display:block;
+}
+
+.size-row input{
+    width:100%;
+}
+
+.price-note{
+    color:#777;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* IMAGES */
+
+.image-area{
+    border:1px dashed #ddd;
+    padding:15px;
+    border-radius:10px;
+    background:#fffafb;
+}
+
+.image-input-row{
+    margin-bottom:12px;
+}
+
+.image-input-row label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.image-input-row input{
+    width:100%;
+}
+
+.image-preview-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.image-preview-box{
+    position:relative;
+    height:130px;
+    border-radius:8px;
+    overflow:hidden;
+    background:#f8e7ee;
     border:1px solid #ddd;
+}
+
+.image-preview-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.image-number{
+    position:absolute;
+    top:5px;
+    left:5px;
+    background:#c2185b;
+    color:white;
+    padding:4px 7px;
+    border-radius:5px;
+    font-size:12px;
 }
 
 .upload-status{
@@ -302,7 +382,7 @@ header{
 .product-info{
     color:#666;
     font-size:14px;
-    line-height:1.6;
+    line-height:1.7;
 }
 
 .card-buttons{
@@ -354,6 +434,14 @@ header{
         grid-template-columns:1fr;
     }
 
+    .image-preview-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .size-row{
+        grid-template-columns:1fr;
+    }
+
     header{
         justify-content:center;
     }
@@ -367,7 +455,7 @@ header{
 <body>
 
 
-<!-- LOGIN PAGE -->
+<!-- LOGIN -->
 
 <section id="loginPage">
 
@@ -404,7 +492,7 @@ header{
 </section>
 
 
-<!-- ADMIN PAGE -->
+<!-- ADMIN -->
 
 <section id="adminPage">
 
@@ -449,13 +537,11 @@ header{
         <div class="form-grid">
 
 
-            <!-- PRODUCT NAME -->
+            <!-- NAME -->
 
             <div class="form-group">
 
-                <label>
-                    Product Name
-                </label>
+                <label>Product Name</label>
 
                 <input
                     id="productName"
@@ -465,55 +551,20 @@ header{
             </div>
 
 
-            <!-- PRICE -->
-
-            <div class="form-group">
-
-                <label>
-                    Price
-                </label>
-
-                <input
-                    id="productPrice"
-                    type="number"
-                    placeholder="e.g. 899">
-
-            </div>
-
-
             <!-- CATEGORY -->
 
             <div class="form-group">
 
-                <label>
-                    Category
-                </label>
+                <label>Category</label>
 
                 <select id="productCategory">
 
-                    <option value="Makeup">
-                        Makeup
-                    </option>
-
-                    <option value="Skincare">
-                        Skincare
-                    </option>
-
-                    <option value="Hair Care">
-                        Hair Care
-                    </option>
-
-                    <option value="Fragrance">
-                        Fragrance
-                    </option>
-
-                    <option value="Body Care">
-                        Body Care
-                    </option>
-
-                    <option value="Accessories">
-                        Accessories
-                    </option>
+                    <option value="Makeup">Makeup</option>
+                    <option value="Skincare">Skincare</option>
+                    <option value="Hair Care">Hair Care</option>
+                    <option value="Fragrance">Fragrance</option>
+                    <option value="Body Care">Body Care</option>
+                    <option value="Accessories">Accessories</option>
 
                 </select>
 
@@ -524,37 +575,111 @@ header{
 
             <div class="form-group">
 
-                <label>
-                    Stock
-                </label>
+                <label>Stock</label>
 
                 <input
                     id="productStock"
                     type="number"
+                    min="0"
                     placeholder="e.g. 20">
 
             </div>
 
 
-            <!-- SIZES -->
+            <!-- RATING -->
 
             <div class="form-group">
 
-                <label>
-                    Sizes
-                </label>
+                <label>Rating</label>
 
-                <input
-                    id="productSizes"
-                    type="text"
-                    placeholder="e.g. 30ml, 50ml, 100ml">
+                <select id="productRating">
+
+                    <option value="5">★★★★★ 5</option>
+                    <option value="4">★★★★☆ 4</option>
+                    <option value="3">★★★☆☆ 3</option>
+                    <option value="2">★★☆☆☆ 2</option>
+                    <option value="1">★☆☆☆☆ 1</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- SIZES / PRICES -->
+
+            <div class="form-group full">
+
+                <div class="size-box">
+
+                    <h3>
+                        Size & Price
+                    </h3>
+
+                    <div class="size-row">
+
+                        <div>
+
+                            <label>
+                                Small
+                            </label>
+
+                            <input
+                                id="smallPrice"
+                                type="number"
+                                min="0"
+                                placeholder="Small price">
+
+                        </div>
+
+
+                        <div>
+
+                            <label>
+                                Medium
+                            </label>
+
+                            <input
+                                id="mediumPrice"
+                                type="number"
+                                min="0"
+                                placeholder="Medium price">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="size-row">
+
+                        <div>
+
+                            <label>
+                                Large
+                            </label>
+
+                            <input
+                                id="largePrice"
+                                type="number"
+                                min="0"
+                                placeholder="Large price">
+
+                        </div>
+
+                    </div>
+
+                    <div class="price-note">
+                        Jo size available ho uski price enter karein.
+                        Available na ho to blank chhor dein.
+                    </div>
+
+                </div>
 
             </div>
 
 
             <!-- COLORS -->
 
-            <div class="form-group">
+            <div class="form-group full">
 
                 <label>
                     Colors / Variants
@@ -565,41 +690,107 @@ header{
                     type="text"
                     placeholder="e.g. Red, Pink, Nude">
 
+                <div class="help">
+                    Multiple colors comma se separate karein.
+                </div>
+
             </div>
 
 
-            <!-- IMAGE -->
+            <!-- IMAGES -->
 
             <div class="form-group full">
 
                 <label>
-                    Product Image
+                    Product Images — Maximum 6
                 </label>
 
-                <input
-                    id="productImageFile"
-                    type="file"
-                    accept="image/*">
+                <div class="image-area">
 
-                <div class="image-help">
-                    📷 Gallery se product image select karein
+                    <div class="image-input-row">
+
+                        <label>Image 1</label>
+
+                        <input
+                            type="file"
+                            id="image1"
+                            accept="image/*">
+
+                    </div>
+
+
+                    <div class="image-input-row">
+
+                        <label>Image 2</label>
+
+                        <input
+                            type="file"
+                            id="image2"
+                            accept="image/*">
+
+                    </div>
+
+
+                    <div class="image-input-row">
+
+                        <label>Image 3</label>
+
+                        <input
+                            type="file"
+                            id="image3"
+                            accept="image/*">
+
+                    </div>
+
+
+                    <div class="image-input-row">
+
+                        <label>Image 4</label>
+
+                        <input
+                            type="file"
+                            id="image4"
+                            accept="image/*">
+
+                    </div>
+
+
+                    <div class="image-input-row">
+
+                        <label>Image 5</label>
+
+                        <input
+                            type="file"
+                            id="image5"
+                            accept="image/*">
+
+                    </div>
+
+
+                    <div class="image-input-row">
+
+                        <label>Image 6</label>
+
+                        <input
+                            type="file"
+                            id="image6"
+                            accept="image/*">
+
+                    </div>
+
+
+                    <div
+                        class="upload-status"
+                        id="imageUploadStatus">
+                    </div>
+
+
+                    <div
+                        class="image-preview-grid"
+                        id="imagePreviewGrid">
+                    </div>
+
                 </div>
-
-                <div
-                    class="upload-status"
-                    id="imageUploadStatus">
-                </div>
-
-                <img
-                    id="imagePreview"
-                    class="image-preview"
-                    alt="Image Preview">
-
-                <!-- Cloudinary image URL hidden -->
-
-                <input
-                    id="productImage"
-                    type="hidden">
 
             </div>
 
@@ -653,9 +844,7 @@ header{
 
     <div class="products-title">
 
-        <h2>
-            Your Products
-        </h2>
+        <h2>Your Products</h2>
 
     </div>
 
@@ -663,9 +852,7 @@ header{
         class="product-list"
         id="productList">
 
-        <p>
-            Loading products...
-        </p>
+        <p>Loading products...</p>
 
     </div>
 
@@ -673,8 +860,6 @@ header{
 
 </section>
 
-
-<!-- FIREBASE -->
 
 <script type="module">
 
@@ -702,7 +887,7 @@ import {
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-/* FIREBASE CONFIG */
+/* FIREBASE */
 
 const firebaseConfig = {
 
@@ -750,21 +935,22 @@ const CLOUDINARY_UPLOAD_PRESET =
 
 
 let editingId = null;
+let existingImages = [];
 
 
 /* ELEMENTS */
 
-const imageFileInput =
-    document.getElementById("productImageFile");
-
-const imageUploadStatus =
-    document.getElementById("imageUploadStatus");
-
-const imagePreview =
-    document.getElementById("imagePreview");
-
 const saveBtn =
     document.getElementById("saveBtn");
+
+const statusMessage =
+    document.getElementById("statusMessage");
+
+const uploadStatus =
+    document.getElementById("imageUploadStatus");
+
+const previewGrid =
+    document.getElementById("imagePreviewGrid");
 
 
 /* LOGIN */
@@ -825,7 +1011,7 @@ window.logout = async function(){
 };
 
 
-/* AUTH STATE */
+/* AUTH */
 
 onAuthStateChanged(auth,function(user){
 
@@ -852,166 +1038,169 @@ onAuthStateChanged(auth,function(user){
 });
 
 
-/* CLOUDINARY IMAGE UPLOAD */
+/* IMAGE PREVIEW */
 
-imageFileInput.addEventListener(
-    "change",
-    async function(){
+for(let i = 1; i <= 6; i++){
 
-        const file =
-            this.files[0];
+    const input =
+        document.getElementById("image" + i);
 
+    input.addEventListener(
+        "change",
+        function(){
 
-        if(!file){
-
-            return;
-
-        }
-
-
-        /* CHECK FILE TYPE */
-
-        if(!file.type.startsWith("image/")){
-
-            imageUploadStatus.textContent =
-                "Please select an image file.";
-
-            this.value = "";
-
-            return;
+            previewSelectedImages();
 
         }
+    );
+
+}
 
 
-        /* CHECK FILE SIZE - 10MB */
+/* PREVIEW SELECTED IMAGES */
 
-        if(file.size > 10 * 1024 * 1024){
+function previewSelectedImages(){
 
-            imageUploadStatus.textContent =
-                "Image must be smaller than 10MB.";
+    previewGrid.innerHTML = "";
 
-            this.value = "";
+    for(let i = 1; i <= 6; i++){
 
-            return;
+        const input =
+            document.getElementById("image" + i);
 
-        }
+        if(input.files && input.files[0]){
 
-
-        imageUploadStatus.textContent =
-            "Uploading image... ⏳";
-
-
-        saveBtn.disabled = true;
-
-
-        /* LOCAL PREVIEW */
-
-        const localURL =
-            URL.createObjectURL(file);
-
-        imagePreview.src =
-            localURL;
-
-        imagePreview.style.display =
-            "block";
-
-
-        const formData =
-            new FormData();
-
-
-        formData.append(
-            "file",
-            file
-        );
-
-
-        formData.append(
-            "upload_preset",
-            CLOUDINARY_UPLOAD_PRESET
-        );
-
-
-        try{
-
-            const response =
-                await fetch(
-
-                    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-
-                    {
-                        method:"POST",
-                        body:formData
-                    }
-
+            const url =
+                URL.createObjectURL(
+                    input.files[0]
                 );
 
+            previewGrid.innerHTML += `
 
-            const data =
-                await response.json();
+                <div class="image-preview-box">
 
+                    <img
+                        src="${url}"
+                        alt="Product Image ${i}"
+                    >
 
-            if(!response.ok){
+                    <div class="image-number">
+                        Image ${i}
+                    </div>
 
-                throw new Error(
-                    data.error?.message ||
-                    "Image upload failed."
-                );
+                </div>
 
-            }
-
-
-            /* SAVE CLOUDINARY URL */
-
-            document.getElementById(
-                "productImage"
-            ).value =
-                data.secure_url;
-
-
-            /* SHOW CLOUDINARY IMAGE */
-
-            imagePreview.src =
-                data.secure_url;
-
-
-            imageUploadStatus.textContent =
-                "Image uploaded successfully ✅";
-
-
-        }catch(error){
-
-            console.error(
-                "Cloudinary error:",
-                error
-            );
-
-
-            document.getElementById(
-                "productImage"
-            ).value = "";
-
-
-            imagePreview.style.display =
-                "none";
-
-
-            imageUploadStatus.textContent =
-                "Image upload failed ❌";
-
-
-            alert(
-                "Image upload failed. Please try again."
-            );
-
-        }finally{
-
-            saveBtn.disabled = false;
+            `;
 
         }
 
     }
-);
+
+}
+
+
+/* UPLOAD ONE IMAGE */
+
+async function uploadImage(file){
+
+    if(!file.type.startsWith("image/")){
+
+        throw new Error(
+            "Only image files are allowed."
+        );
+
+    }
+
+
+    if(file.size > 10 * 1024 * 1024){
+
+        throw new Error(
+            "Each image must be smaller than 10MB."
+        );
+
+    }
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "file",
+        file
+    );
+
+
+    formData.append(
+        "upload_preset",
+        CLOUDINARY_UPLOAD_PRESET
+    );
+
+
+    const response =
+        await fetch(
+
+            `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+
+            {
+                method:"POST",
+                body:formData
+            }
+
+        );
+
+
+    const data =
+        await response.json();
+
+
+    if(!response.ok){
+
+        throw new Error(
+            data.error?.message ||
+            "Image upload failed."
+        );
+
+    }
+
+
+    return data.secure_url;
+
+}
+
+
+/* GET IMAGES */
+
+async function getImages(){
+
+    const images = [];
+
+
+    for(let i = 1; i <= 6; i++){
+
+        const input =
+            document.getElementById("image" + i);
+
+        if(input.files && input.files[0]){
+
+            uploadStatus.textContent =
+                `Uploading image ${i} of 6... ⏳`;
+
+            const url =
+                await uploadImage(
+                    input.files[0]
+                );
+
+            images.push(url);
+
+        }
+
+    }
+
+
+    return images;
+
+}
 
 
 /* SAVE PRODUCT */
@@ -1023,12 +1212,6 @@ window.saveProduct = async function(){
         .value
         .trim();
 
-    const price =
-        Number(
-            document.getElementById("productPrice")
-            .value
-        );
-
     const category =
         document.getElementById("productCategory")
         .value;
@@ -1036,21 +1219,17 @@ window.saveProduct = async function(){
     const stock =
         Number(
             document.getElementById("productStock")
-            .value
+            .value || 0
         );
 
-    const sizes =
-        document.getElementById("productSizes")
-        .value
-        .trim();
+    const rating =
+        Number(
+            document.getElementById("productRating")
+            .value || 5
+        );
 
-    const colors =
+    const colorsText =
         document.getElementById("productColors")
-        .value
-        .trim();
-
-    const image =
-        document.getElementById("productImage")
         .value
         .trim();
 
@@ -1059,26 +1238,44 @@ window.saveProduct = async function(){
         .value
         .trim();
 
-    const status =
-        document.getElementById("statusMessage");
+
+    const small =
+        Number(
+            document.getElementById("smallPrice")
+            .value || 0
+        );
+
+    const medium =
+        Number(
+            document.getElementById("mediumPrice")
+            .value || 0
+        );
+
+    const large =
+        Number(
+            document.getElementById("largePrice")
+            .value || 0
+        );
 
 
-    if(!name || !price){
+    if(!name){
 
-        status.textContent =
-            "Product name and price are required.";
+        statusMessage.textContent =
+            "Product name is required.";
 
         return;
 
     }
 
 
-    /* IMAGE REQUIRED ONLY FOR NEW PRODUCT */
+    if(
+        small <= 0 &&
+        medium <= 0 &&
+        large <= 0
+    ){
 
-    if(!editingId && !image){
-
-        status.textContent =
-            "Please select and upload a product image.";
+        statusMessage.textContent =
+            "At least one size price is required.";
 
         return;
 
@@ -1087,31 +1284,148 @@ window.saveProduct = async function(){
 
     saveBtn.disabled = true;
 
-
-    const product = {
-
-        name:name,
-
-        price:price,
-
-        category:category,
-
-        stock:stock,
-
-        sizes:sizes,
-
-        colors:colors,
-
-        image:image,
-
-        description:description,
-
-        updatedAt:serverTimestamp()
-
-    };
+    statusMessage.textContent =
+        "Saving product... ⏳";
 
 
     try{
+
+        /* UPLOAD NEW IMAGES */
+
+        const newImages =
+            await getImages();
+
+
+        /* KEEP OLD IMAGES DURING EDIT */
+
+        let finalImages = [];
+
+
+        if(editingId){
+
+            finalImages =
+                existingImages.slice();
+
+        }
+
+
+        finalImages =
+            finalImages.concat(
+                newImages
+            );
+
+
+        finalImages =
+            finalImages.slice(
+                0,
+                6
+            );
+
+
+        if(!editingId && finalImages.length === 0){
+
+            throw new Error(
+                "Please select at least one product image."
+            );
+
+        }
+
+
+        /* SIZES */
+
+        const sizes = {};
+
+
+        if(small > 0){
+
+            sizes.Small = {
+                price:small
+            };
+
+        }
+
+
+        if(medium > 0){
+
+            sizes.Medium = {
+                price:medium
+            };
+
+        }
+
+
+        if(large > 0){
+
+            sizes.Large = {
+                price:large
+            };
+
+        }
+
+
+        /* COLORS */
+
+        const colors =
+            colorsText
+
+            ?
+
+            colorsText
+                .split(",")
+                .map(
+                    item => item.trim()
+                )
+                .filter(Boolean)
+
+            :
+
+            [];
+
+
+        /* MAIN PRICE */
+
+        const prices =
+            Object.values(sizes)
+                .map(
+                    item => item.price
+                );
+
+
+        const mainPrice =
+            Math.min(...prices);
+
+
+        /* PRODUCT DATA */
+
+        const product = {
+
+            name:name,
+
+            price:mainPrice,
+
+            category:category,
+
+            stock:stock,
+
+            rating:rating,
+
+            sizes:sizes,
+
+            colors:colors,
+
+            images:finalImages,
+
+            /* Old field retained for compatibility */
+
+            image:finalImages[0] || "",
+
+            description:description,
+
+            updatedAt:
+                serverTimestamp()
+
+        };
+
 
         if(editingId){
 
@@ -1128,7 +1442,7 @@ window.saveProduct = async function(){
             );
 
 
-            status.textContent =
+            statusMessage.textContent =
                 "Product updated successfully. ✅";
 
         }else{
@@ -1141,15 +1455,18 @@ window.saveProduct = async function(){
                 ),
 
                 {
+
                     ...product,
+
                     createdAt:
-                    serverTimestamp()
+                        serverTimestamp()
+
                 }
 
             );
 
 
-            status.textContent =
+            statusMessage.textContent =
                 "Product added successfully. ✅";
 
         }
@@ -1164,12 +1481,14 @@ window.saveProduct = async function(){
 
         console.error(error);
 
-        status.textContent =
+        statusMessage.textContent =
             "Error: " + error.message;
 
     }finally{
 
         saveBtn.disabled = false;
+
+        uploadStatus.textContent = "";
 
     }
 
@@ -1214,22 +1533,45 @@ async function loadProducts(){
         list.innerHTML = "";
 
 
-        snapshot.forEach(function(document){
+        snapshot.forEach(function(item){
 
             const product =
-                document.data();
+                item.data();
 
             const id =
-                document.id;
+                item.id;
+
+
+            const images =
+                Array.isArray(product.images)
+                && product.images.length
+
+                ?
+
+                product.images
+
+                :
+
+                (
+                    product.image
+                    ?
+                    [product.image]
+                    :
+                    []
+                );
+
+
+            const firstImage =
+                images[0];
 
 
             const imageHTML =
-                product.image
+                firstImage
 
                 ?
 
                 `<img
-                    src="${escapeHTML(product.image)}"
+                    src="${escapeHTML(firstImage)}"
                     alt="${escapeHTML(product.name || "Product")}"
                     loading="lazy"
                 >`
@@ -1239,6 +1581,26 @@ async function loadProducts(){
                 `<div class="no-image">
                     💄
                 </div>`;
+
+
+            const sizeText =
+                formatSizes(
+                    product.sizes
+                );
+
+
+            const colorsText =
+                Array.isArray(product.colors)
+
+                ?
+
+                product.colors.join(", ")
+
+                :
+
+                (
+                    product.colors || "-"
+                );
 
 
             list.innerHTML += `
@@ -1251,6 +1613,7 @@ async function loadProducts(){
 
                     </div>
 
+
                     <div class="product-content">
 
                         <h3>
@@ -1259,11 +1622,14 @@ async function loadProducts(){
                             )}
                         </h3>
 
+
                         <div class="product-price">
 
-                            Rs. ${product.price || 0}
+                            From Rs.
+                            ${product.price || 0}
 
                         </div>
+
 
                         <div class="product-info">
 
@@ -1274,22 +1640,38 @@ async function loadProducts(){
 
                             <br>
 
+                            Rating:
+                            ${"★".repeat(
+                                Math.max(
+                                    0,
+                                    Math.min(
+                                        5,
+                                        Number(
+                                            product.rating || 0
+                                        )
+                                    )
+                                )
+                            )}
+
+                            <br>
+
                             Stock:
                             ${product.stock ?? 0}
 
                             <br>
 
                             Sizes:
-                            ${escapeHTML(
-                                product.sizes || "-"
-                            )}
+                            ${escapeHTML(sizeText)}
 
                             <br>
 
                             Colors:
-                            ${escapeHTML(
-                                product.colors || "-"
-                            )}
+                            ${escapeHTML(colorsText)}
+
+                            <br>
+
+                            Images:
+                            ${images.length}/6
 
                         </div>
 
@@ -1336,6 +1718,64 @@ async function loadProducts(){
 }
 
 
+/* FORMAT SIZES */
+
+function formatSizes(sizes){
+
+    if(!sizes){
+
+        return "-";
+
+    }
+
+
+    if(typeof sizes === "string"){
+
+        return sizes;
+
+    }
+
+
+    if(typeof sizes === "object"){
+
+        const result = [];
+
+
+        Object.keys(sizes).forEach(function(size){
+
+            const value =
+                sizes[size];
+
+
+            const price =
+                typeof value === "object"
+
+                ?
+
+                value.price
+
+                :
+
+                value;
+
+
+            result.push(
+                `${size}: Rs. ${price || 0}`
+            );
+
+        });
+
+
+        return result.join(" | ");
+
+    }
+
+
+    return "-";
+
+}
+
+
 /* EDIT PRODUCT */
 
 window.editProduct = async function(id){
@@ -1354,15 +1794,15 @@ window.editProduct = async function(id){
         let found = null;
 
 
-        snapshot.forEach(function(document){
+        snapshot.forEach(function(item){
 
-            if(document.id === id){
+            if(item.id === id){
 
                 found = {
 
-                    id:document.id,
+                    id:item.id,
 
-                    ...document.data()
+                    ...item.data()
 
                 };
 
@@ -1372,6 +1812,10 @@ window.editProduct = async function(id){
 
 
         if(!found){
+
+            alert(
+                "Product not found."
+            );
 
             return;
 
@@ -1389,12 +1833,6 @@ window.editProduct = async function(id){
 
 
         document.getElementById(
-            "productPrice"
-        ).value =
-            found.price || "";
-
-
-        document.getElementById(
             "productCategory"
         ).value =
             found.category || "Makeup";
@@ -1407,57 +1845,154 @@ window.editProduct = async function(id){
 
 
         document.getElementById(
-            "productSizes"
+            "productRating"
         ).value =
-            found.sizes || "";
+            found.rating || 5;
 
+
+        /* COLORS */
+
+        if(Array.isArray(found.colors)){
+
+            document.getElementById(
+                "productColors"
+            ).value =
+                found.colors.join(", ");
+
+        }else{
+
+            document.getElementById(
+                "productColors"
+            ).value =
+                found.colors || "";
+
+        }
+
+
+        /* SIZES */
 
         document.getElementById(
-            "productColors"
-        ).value =
-            found.colors || "";
-
+            "smallPrice"
+        ).value = "";
 
         document.getElementById(
-            "productImage"
-        ).value =
-            found.image || "";
+            "mediumPrice"
+        ).value = "";
+
+        document.getElementById(
+            "largePrice"
+        ).value = "";
+
+
+        if(found.sizes){
+
+            const sizes =
+                found.sizes;
+
+
+            if(
+                typeof sizes === "object"
+                &&
+                !Array.isArray(sizes)
+            ){
+
+                if(sizes.Small){
+
+                    document.getElementById(
+                        "smallPrice"
+                    ).value =
+                        typeof sizes.Small === "object"
+
+                        ?
+
+                        sizes.Small.price || ""
+
+                        :
+
+                        sizes.Small;
+
+                }
+
+
+                if(sizes.Medium){
+
+                    document.getElementById(
+                        "mediumPrice"
+                    ).value =
+                        typeof sizes.Medium === "object"
+
+                        ?
+
+                        sizes.Medium.price || ""
+
+                        :
+
+                        sizes.Medium;
+
+                }
+
+
+                if(sizes.Large){
+
+                    document.getElementById(
+                        "largePrice"
+                    ).value =
+                        typeof sizes.Large === "object"
+
+                        ?
+
+                        sizes.Large.price || ""
+
+                        :
+
+                        sizes.Large;
+
+                }
+
+            }
+
+        }
+
+
+        /* IMAGES */
+
+        if(
+            Array.isArray(found.images)
+        ){
+
+            existingImages =
+                found.images.slice(0,6);
+
+        }else if(found.image){
+
+            existingImages =
+                [found.image];
+
+        }else{
+
+            existingImages = [];
+
+        }
+
+
+        showExistingImages();
+
+
+        /* RESET FILE INPUTS */
+
+        for(let i = 1; i <= 6; i++){
+
+            document.getElementById(
+                "image" + i
+            ).value = "";
+
+        }
 
 
         document.getElementById(
             "productDescription"
         ).value =
             found.description || "";
-
-
-        /* SHOW EXISTING IMAGE */
-
-        if(found.image){
-
-            imagePreview.src =
-                found.image;
-
-            imagePreview.style.display =
-                "block";
-
-            imageUploadStatus.textContent =
-                "Current product image";
-
-        }else{
-
-            imagePreview.style.display =
-                "none";
-
-            imageUploadStatus.textContent =
-                "";
-
-        }
-
-
-        /* RESET FILE INPUT */
-
-        imageFileInput.value =
-            "";
 
 
         document.getElementById(
@@ -1476,6 +2011,10 @@ window.editProduct = async function(id){
             "cancelBtn"
         ).style.display =
             "block";
+
+
+        statusMessage.textContent =
+            "Editing product...";
 
 
         window.scrollTo({
@@ -1500,7 +2039,40 @@ window.editProduct = async function(id){
 };
 
 
-/* DELETE PRODUCT */
+/* SHOW EXISTING IMAGES */
+
+function showExistingImages(){
+
+    previewGrid.innerHTML = "";
+
+
+    existingImages.forEach(
+        function(url,index){
+
+            previewGrid.innerHTML += `
+
+                <div class="image-preview-box">
+
+                    <img
+                        src="${escapeHTML(url)}"
+                        alt="Existing Image ${index + 1}"
+                    >
+
+                    <div class="image-number">
+                        Image ${index + 1}
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* DELETE */
 
 window.deleteProduct = async function(id){
 
@@ -1546,21 +2118,23 @@ window.deleteProduct = async function(id){
 };
 
 
-/* CANCEL EDIT */
+/* CANCEL */
 
 window.cancelEdit = function(){
-
-    editingId =
-        null;
 
     clearForm();
 
 };
 
 
-/* CLEAR FORM */
+/* CLEAR */
 
 function clearForm(){
+
+    editingId = null;
+
+    existingImages = [];
+
 
     document.getElementById(
         "productName"
@@ -1568,8 +2142,8 @@ function clearForm(){
 
 
     document.getElementById(
-        "productPrice"
-    ).value = "";
+        "productCategory"
+    ).value = "Makeup";
 
 
     document.getElementById(
@@ -1578,7 +2152,22 @@ function clearForm(){
 
 
     document.getElementById(
-        "productSizes"
+        "productRating"
+    ).value = "5";
+
+
+    document.getElementById(
+        "smallPrice"
+    ).value = "";
+
+
+    document.getElementById(
+        "mediumPrice"
+    ).value = "";
+
+
+    document.getElementById(
+        "largePrice"
     ).value = "";
 
 
@@ -1588,29 +2177,22 @@ function clearForm(){
 
 
     document.getElementById(
-        "productImage"
-    ).value = "";
-
-
-    document.getElementById(
         "productDescription"
     ).value = "";
 
 
-    imageFileInput.value =
-        "";
+    for(let i = 1; i <= 6; i++){
+
+        document.getElementById(
+            "image" + i
+        ).value = "";
+
+    }
 
 
-    imagePreview.src =
-        "";
+    previewGrid.innerHTML = "";
 
-
-    imagePreview.style.display =
-        "none";
-
-
-    imageUploadStatus.textContent =
-        "";
+    uploadStatus.textContent = "";
 
 
     document.getElementById(
@@ -1631,19 +2213,12 @@ function clearForm(){
         "none";
 
 
-    document.getElementById(
-        "statusMessage"
-    ).textContent =
-        "";
-
-
-    editingId =
-        null;
+    statusMessage.textContent = "";
 
 }
 
 
-/* HTML ESCAPE */
+/* ESCAPE HTML */
 
 function escapeHTML(value){
 
