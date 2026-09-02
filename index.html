@@ -14,19 +14,15 @@
     font-family:Arial,sans-serif;
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     background:#fffafc;
     color:#222;
 }
 
-/* HEADER */
-
 header{
-    background:#ffffff;
+    background:#fff;
     padding:16px 6%;
     display:flex;
     align-items:center;
@@ -43,13 +39,12 @@ header{
     font-weight:bold;
 }
 
-.logo span{
-    color:#c2185b;
-}
+.logo span{color:#c2185b}
 
 nav{
     display:flex;
     gap:22px;
+    flex-wrap:wrap;
 }
 
 nav a{
@@ -58,9 +53,7 @@ nav a{
     font-size:15px;
 }
 
-nav a:hover{
-    color:#c2185b;
-}
+nav a:hover{color:#c2185b}
 
 .cart-btn{
     border:0;
@@ -72,8 +65,6 @@ nav a:hover{
     font-weight:bold;
 }
 
-/* HERO */
-
 .hero{
     min-height:470px;
     padding:70px 7%;
@@ -82,9 +73,7 @@ nav a:hover{
     background:linear-gradient(120deg,#fff0f5,#fde3ed);
 }
 
-.hero-content{
-    max-width:650px;
-}
+.hero-content{max-width:650px}
 
 .hero h1{
     font-size:50px;
@@ -92,9 +81,7 @@ nav a:hover{
     margin-bottom:18px;
 }
 
-.hero h1 span{
-    color:#c2185b;
-}
+.hero h1 span{color:#c2185b}
 
 .hero p{
     color:#666;
@@ -113,8 +100,6 @@ nav a:hover{
     font-weight:bold;
 }
 
-/* SECTION */
-
 .section{
     padding:55px 6%;
 }
@@ -129,11 +114,7 @@ nav a:hover{
     margin-bottom:8px;
 }
 
-.title p{
-    color:#777;
-}
-
-/* CATEGORIES */
+.title p{color:#777}
 
 .categories{
     display:grid;
@@ -151,9 +132,7 @@ nav a:hover{
     transition:.2s;
 }
 
-.category:hover{
-    transform:translateY(-4px);
-}
+.category:hover{transform:translateY(-4px)}
 
 .category-icon{
     font-size:55px;
@@ -165,11 +144,7 @@ nav a:hover{
     margin-bottom:7px;
 }
 
-.category p{
-    color:#777;
-}
-
-/* PRODUCTS */
+.category p{color:#777}
 
 .products{
     display:grid;
@@ -185,33 +160,55 @@ nav a:hover{
 }
 
 .product-image{
-    height:230px;
+    height:250px;
     background:#f8e9ef;
     display:flex;
     align-items:center;
     justify-content:center;
+    overflow:hidden;
     font-size:70px;
 }
 
-.product-info{
-    padding:18px;
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.product-info h3{
-    margin-bottom:8px;
+.product-image.small img{
+    width:65%;
+    height:65%;
+    object-fit:contain;
 }
+
+.product-image.medium img{
+    width:82%;
+    height:82%;
+    object-fit:contain;
+}
+
+.product-image.large img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.product-info{padding:18px}
+
+.product-info h3{margin-bottom:8px}
 
 .price{
     font-size:19px;
     font-weight:bold;
+    color:#c2185b;
     margin-bottom:12px;
 }
 
-.old-price{
-    color:#999;
-    text-decoration:line-through;
+.option-label{
+    display:block;
     font-size:14px;
-    margin-left:5px;
+    font-weight:bold;
+    margin-top:10px;
 }
 
 select{
@@ -223,11 +220,11 @@ select{
     background:white;
 }
 
-.option-label{
-    display:block;
+.product-details{
+    color:#777;
     font-size:14px;
-    font-weight:bold;
-    margin-top:10px;
+    line-height:1.7;
+    margin-top:8px;
 }
 
 .add-btn{
@@ -242,11 +239,21 @@ select{
     cursor:pointer;
 }
 
-.add-btn:hover{
-    background:#a3154e;
+.add-btn:hover{background:#a3154e}
+
+.loading{
+    grid-column:1/-1;
+    text-align:center;
+    padding:40px;
+    color:#777;
 }
 
-/* FEATURES */
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:40px;
+    color:#777;
+}
 
 .features{
     display:grid;
@@ -272,8 +279,6 @@ select{
     margin-top:7px;
 }
 
-/* CART */
-
 .cart-panel{
     display:none;
     position:fixed;
@@ -289,9 +294,7 @@ select{
     overflow-y:auto;
 }
 
-.cart-panel.open{
-    display:block;
-}
+.cart-panel.open{display:block}
 
 .cart-header{
     display:flex;
@@ -344,8 +347,6 @@ select{
     cursor:pointer;
 }
 
-/* CHECKOUT */
-
 .checkout{
     display:none;
     max-width:600px;
@@ -356,13 +357,9 @@ select{
     box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
-.checkout.show{
-    display:block;
-}
+.checkout.show{display:block}
 
-.checkout h2{
-    margin-bottom:20px;
-}
+.checkout h2{margin-bottom:20px}
 
 .checkout input,
 .checkout textarea{
@@ -389,8 +386,6 @@ select{
     cursor:pointer;
 }
 
-/* FOOTER */
-
 footer{
     background:#222;
     color:white;
@@ -403,14 +398,23 @@ footer p{
     margin:8px 0;
 }
 
+.whatsapp{
+    display:inline-block;
+    margin-top:12px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:11px 18px;
+    border-radius:7px;
+    font-weight:bold;
+}
+
 .copyright{
     margin-top:20px;
     padding-top:18px;
     border-top:1px solid #444;
     color:#888;
 }
-
-/* MOBILE */
 
 @media(max-width:900px){
 
@@ -457,8 +461,6 @@ footer p{
 
 <body>
 
-<!-- HEADER -->
-
 <header>
 
     <div class="logo">
@@ -478,8 +480,6 @@ footer p{
 
 </header>
 
-
-<!-- HERO -->
 
 <section class="hero" id="home">
 
@@ -504,8 +504,6 @@ footer p{
 
 </section>
 
-
-<!-- CATEGORIES -->
 
 <section class="section" id="categories">
 
@@ -539,173 +537,23 @@ footer p{
 </section>
 
 
-<!-- PRODUCTS -->
-
 <section class="section" id="products">
 
     <div class="title">
-        <h2>Featured Products</h2>
-        <p>Our latest beauty collection</p>
+        <h2>Our Products</h2>
+        <p>Latest products from Zaree Collection</p>
     </div>
 
-    <div class="products">
+    <div class="products" id="productContainer">
 
-
-        <!-- PRODUCT 1 -->
-
-        <div class="product" data-category="Makeup">
-
-            <div class="product-image">
-                💄
-            </div>
-
-            <div class="product-info">
-
-                <h3>Matte Lipstick</h3>
-
-                <div class="price">
-                    Rs. 899
-                    <span class="old-price">Rs. 1,099</span>
-                </div>
-
-                <label class="option-label">
-                    Color
-                </label>
-
-                <select id="color1">
-                    <option>Red</option>
-                    <option>Pink</option>
-                    <option>Nude</option>
-                    <option>Berry</option>
-                </select>
-
-                <button class="add-btn"
-                    onclick="addProduct('Matte Lipstick',899,'color1')">
-                    Add to Cart
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- PRODUCT 2 -->
-
-        <div class="product" data-category="Skincare">
-
-            <div class="product-image">
-                🧴
-            </div>
-
-            <div class="product-info">
-
-                <h3>Face Moisturizer</h3>
-
-                <div class="price">
-                    Rs. 1,499
-                    <span class="old-price">Rs. 1,799</span>
-                </div>
-
-                <label class="option-label">
-                    Size
-                </label>
-
-                <select id="size2">
-                    <option>50ml</option>
-                    <option>100ml</option>
-                    <option>150ml</option>
-                </select>
-
-                <button class="add-btn"
-                    onclick="addProduct('Face Moisturizer',1499,'size2')">
-                    Add to Cart
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- PRODUCT 3 -->
-
-        <div class="product" data-category="Fragrance">
-
-            <div class="product-image">
-                🌸
-            </div>
-
-            <div class="product-info">
-
-                <h3>Floral Perfume</h3>
-
-                <div class="price">
-                    Rs. 2,199
-                    <span class="old-price">Rs. 2,599</span>
-                </div>
-
-                <label class="option-label">
-                    Size
-                </label>
-
-                <select id="size3">
-                    <option>30ml</option>
-                    <option>50ml</option>
-                    <option>100ml</option>
-                </select>
-
-                <button class="add-btn"
-                    onclick="addProduct('Floral Perfume',2199,'size3')">
-                    Add to Cart
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- PRODUCT 4 -->
-
-        <div class="product" data-category="Makeup">
-
-            <div class="product-image">
-                💋
-            </div>
-
-            <div class="product-info">
-
-                <h3>Glossy Lip Gloss</h3>
-
-                <div class="price">
-                    Rs. 749
-                    <span class="old-price">Rs. 899</span>
-                </div>
-
-                <label class="option-label">
-                    Color
-                </label>
-
-                <select id="color4">
-                    <option>Clear</option>
-                    <option>Pink</option>
-                    <option>Peach</option>
-                    <option>Rose</option>
-                </select>
-
-                <button class="add-btn"
-                    onclick="addProduct('Glossy Lip Gloss',749,'color4')">
-                    Add to Cart
-                </button>
-
-            </div>
-
+        <div class="loading">
+            Loading products...
         </div>
 
     </div>
 
 </section>
 
-
-<!-- FEATURES -->
 
 <section class="section">
 
@@ -716,47 +564,21 @@ footer p{
     <div class="features">
 
         <div class="feature">
-
-            <div class="feature-icon">
-                🚚
-            </div>
-
+            <div class="feature-icon">🚚</div>
             <h3>Fast Delivery</h3>
-
-            <p>
-                Reliable delivery service.
-            </p>
-
+            <p>Reliable delivery service.</p>
         </div>
 
-
         <div class="feature">
-
-            <div class="feature-icon">
-                💵
-            </div>
-
+            <div class="feature-icon">💵</div>
             <h3>Cash on Delivery</h3>
-
-            <p>
-                Pay when your order arrives.
-            </p>
-
+            <p>Pay when your order arrives.</p>
         </div>
 
-
         <div class="feature">
-
-            <div class="feature-icon">
-                ⭐
-            </div>
-
+            <div class="feature-icon">⭐</div>
             <h3>Quality Products</h3>
-
-            <p>
-                Quality beauty products.
-            </p>
-
+            <p>Quality beauty products.</p>
         </div>
 
     </div>
@@ -764,36 +586,29 @@ footer p{
 </section>
 
 
-<!-- CHECKOUT -->
-
 <section class="section">
 
     <div class="checkout" id="checkout">
 
         <h2>Customer Details</h2>
 
-        <input
-            id="customerName"
-            type="text"
-            placeholder="Full Name">
+        <input id="customerName"
+               type="text"
+               placeholder="Full Name">
 
-        <input
-            id="customerPhone"
-            type="tel"
-            placeholder="Phone Number">
+        <input id="customerPhone"
+               type="tel"
+               placeholder="Phone Number">
 
-        <input
-            id="customerCity"
-            type="text"
-            placeholder="City">
+        <input id="customerCity"
+               type="text"
+               placeholder="City">
 
-        <textarea
-            id="customerAddress"
-            placeholder="Complete Delivery Address"></textarea>
+        <textarea id="customerAddress"
+                  placeholder="Complete Delivery Address"></textarea>
 
-        <button
-            class="place-order"
-            onclick="placeOrder()">
+        <button class="place-order"
+                onclick="placeOrder()">
 
             Place Order on WhatsApp
 
@@ -804,17 +619,14 @@ footer p{
 </section>
 
 
-<!-- CART -->
-
 <div class="cart-panel" id="cartPanel">
 
     <div class="cart-header">
 
         <h2>Your Cart</h2>
 
-        <button
-            class="close-btn"
-            onclick="closeCart()">
+        <button class="close-btn"
+                onclick="closeCart()">
 
             ✕
 
@@ -829,9 +641,8 @@ footer p{
         <span id="cartTotal">0</span>
     </div>
 
-    <button
-        class="checkout-btn"
-        onclick="showCheckout()">
+    <button class="checkout-btn"
+            onclick="showCheckout()">
 
         Checkout
 
@@ -839,8 +650,6 @@ footer p{
 
 </div>
 
-
-<!-- FOOTER -->
 
 <footer id="contact">
 
@@ -850,7 +659,15 @@ footer p{
 
     <p>📦 Cash on Delivery Available</p>
 
-    <p>📱 WhatsApp Orders Available</p>
+    <p>📱 WhatsApp: 03249689534</p>
+
+    <a class="whatsapp"
+       href="https://wa.me/923249689534"
+       target="_blank">
+
+        💬 Contact us on WhatsApp
+
+    </a>
 
     <div class="copyright">
         © 2026 Zaree Collection. All Rights Reserved.
@@ -859,27 +676,407 @@ footer p{
 </footer>
 
 
-<script>
+<script type="module">
 
-let cart = [];
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-/* ADD PRODUCT */
+/* FIREBASE */
 
-function addProduct(name, price, optionId){
+const firebaseConfig = {
 
-    const option =
-        document.getElementById(optionId).value;
+    apiKey: "AIzaSyAmMUYbXG7XrdJrjBlNZ_9MkyHA9P9aTqA",
 
-    cart.push({
-        name:name,
-        price:price,
-        option:option
+    authDomain:
+        "zaree-collection-5589b.firebaseapp.com",
+
+    projectId:
+        "zaree-collection-5589b",
+
+    storageBucket:
+        "zaree-collection-5589b.firebasestorage.app",
+
+    messagingSenderId:
+        "724088426576",
+
+    appId:
+        "1:724088426576:web:d781393dfb54e2e46ec155",
+
+    measurementId:
+        "G-CHHN119YVR"
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const db =
+    getFirestore(app);
+
+
+/* CART */
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("zareeCart") || "[]"
+    );
+
+
+let allProducts = [];
+
+
+/* LOAD PRODUCTS FROM FIRESTORE */
+
+async function loadProducts(){
+
+    const container =
+        document.getElementById(
+            "productContainer"
+        );
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"products")
+            );
+
+
+        allProducts =
+            snapshot.docs.map(doc => ({
+
+                id:doc.id,
+
+                ...doc.data()
+
+            }));
+
+
+        displayProducts(allProducts);
+
+
+    }catch(error){
+
+        console.error(error);
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                Products could not be loaded.
+
+                <br><br>
+
+                Please check Firebase Firestore Rules.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* DISPLAY PRODUCTS */
+
+function displayProducts(products){
+
+    const container =
+        document.getElementById(
+            "productContainer"
+        );
+
+
+    if(products.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                No products available yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    products.forEach(product => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "product";
+
+        let imageHTML = "";
+
+
+        if(product.image){
+
+            imageHTML = `
+
+                <img
+
+                    src="${escapeHTML(product.image)}"
+
+                    alt="${escapeHTML(product.name || "Product")}"
+
+                    onerror="this.style.display='none';this.parentElement.innerHTML='💄';"
+
+                >
+
+            `;
+
+        }else{
+
+            imageHTML = "💄";
+
+        }
+
+
+        let optionHTML = "";
+
+
+        if(product.colors){
+
+            const colors =
+                String(product.colors)
+                .split(",")
+                .map(x => x.trim())
+                .filter(Boolean);
+
+
+            if(colors.length){
+
+                optionHTML = `
+
+                    <label class="option-label">
+                        Color
+                    </label>
+
+                    <select id="option-${product.id}">
+
+                        ${colors.map(color => `
+
+                            <option>
+                                ${escapeHTML(color)}
+                            </option>
+
+                        `).join("")}
+
+                    </select>
+
+                `;
+
+            }
+
+        }
+        else if(product.sizes){
+
+            const sizes =
+                String(product.sizes)
+                .split(",")
+                .map(x => x.trim())
+                .filter(Boolean);
+
+
+            if(sizes.length){
+
+                optionHTML = `
+
+                    <label class="option-label">
+                        Size
+                    </label>
+
+                    <select id="option-${product.id}">
+
+                        ${sizes.map(size => `
+
+                            <option>
+                                ${escapeHTML(size)}
+                            </option>
+
+                        `).join("")}
+
+                    </select>
+
+                `;
+
+            }
+
+        }
+
+
+        card.innerHTML = `
+
+            <div class="product-image ${escapeHTML(product.imageSize || "large")}">
+
+                ${imageHTML}
+
+            </div>
+
+
+            <div class="product-info">
+
+                <h3>
+                    ${escapeHTML(product.name || "Beauty Product")}
+                </h3>
+
+
+                <div class="price">
+
+                    Rs.
+                    ${Number(product.price || 0).toLocaleString()}
+
+                </div>
+
+
+                <div class="product-details">
+
+                    Category:
+                    ${escapeHTML(product.category || "-")}
+
+                    <br>
+
+                    ${product.stock !== undefined
+                        ? "Stock: " + escapeHTML(product.stock)
+                        : ""}
+
+                </div>
+
+
+                ${optionHTML}
+
+
+                <button
+
+                    class="add-btn"
+
+                    data-id="${escapeHTML(product.id)}"
+
+                >
+
+                    Add to Cart
+
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
     });
 
-    updateCart();
 
-    alert("Product added to cart!");
+    document
+        .querySelectorAll(".add-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function(){
+
+                    addFirestoreProduct(
+                        this.dataset.id
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+/* ADD FIRESTORE PRODUCT TO CART */
+
+function addFirestoreProduct(id){
+
+    const product =
+        allProducts.find(
+            p => p.id === id
+        );
+
+
+    if(!product) return;
+
+
+    const optionElement =
+        document.getElementById(
+            "option-" + id
+        );
+
+
+    const option =
+        optionElement
+        ? optionElement.value
+        : "-";
+
+
+    cart.push({
+
+        id:product.id,
+
+        name:product.name || "Product",
+
+        price:Number(product.price || 0),
+
+        option:option
+
+    });
+
+
+    saveCart();
+
+
+    alert(
+        "Product added to cart!"
+    );
+
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* SAVE CART */
+
+function saveCart(){
+
+    localStorage.setItem(
+        "zareeCart",
+        JSON.stringify(cart)
+    );
+
+    updateCart();
 
 }
 
@@ -888,15 +1085,22 @@ function addProduct(name, price, optionId){
 
 function updateCart(){
 
-    document.getElementById("cartCount")
-        .textContent = cart.length;
+    document.getElementById(
+        "cartCount"
+    ).textContent = cart.length;
+
 
     const items =
-        document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
+
 
     items.innerHTML = "";
 
+
     let total = 0;
+
 
     if(cart.length === 0){
 
@@ -905,126 +1109,169 @@ function updateCart(){
 
     }
 
-    cart.forEach(function(item,index){
 
-        total += item.price;
+    cart.forEach(
+        function(item,index){
 
-        items.innerHTML += `
+            total += Number(
+                item.price || 0
+            );
 
-            <div class="cart-item">
 
-                <strong>${item.name}</strong>
+            items.innerHTML += `
 
-                <div>
-                    Option: ${item.option}
+                <div class="cart-item">
+
+                    <strong>
+                        ${escapeHTML(item.name)}
+                    </strong>
+
+                    <div>
+                        Option:
+                        ${escapeHTML(item.option)}
+                    </div>
+
+                    <div>
+                        Rs.
+                        ${Number(item.price).toLocaleString()}
+                    </div>
+
+                    <button
+                        class="remove-btn"
+                        onclick="removeItem(${index})">
+
+                        Remove
+
+                    </button>
+
                 </div>
 
-                <div>
-                    Rs. ${item.price}
-                </div>
+            `;
 
-                <button
-                    class="remove-btn"
-                    onclick="removeItem(${index})">
+        }
+    );
 
-                    Remove
 
-                </button>
-
-            </div>
-
-        `;
-
-    });
-
-    document.getElementById("cartTotal")
-        .textContent = total;
+    document.getElementById(
+        "cartTotal"
+    ).textContent =
+        total.toLocaleString();
 
 }
 
 
-/* REMOVE */
+/* REMOVE ITEM */
 
-function removeItem(index){
+window.removeItem =
+function(index){
 
     cart.splice(index,1);
 
-    updateCart();
+    saveCart();
 
-}
+};
 
 
 /* OPEN CART */
 
-function openCart(){
+window.openCart =
+function(){
 
-    document.getElementById("cartPanel")
+    document
+        .getElementById("cartPanel")
         .classList.add("open");
 
     updateCart();
 
-}
+};
 
 
 /* CLOSE CART */
 
-function closeCart(){
+window.closeCart =
+function(){
 
-    document.getElementById("cartPanel")
+    document
+        .getElementById("cartPanel")
         .classList.remove("open");
 
-}
+};
 
 
 /* CHECKOUT */
 
-function showCheckout(){
+window.showCheckout =
+function(){
 
     if(cart.length === 0){
 
-        alert("Please add a product first.");
+        alert(
+            "Please add a product first."
+        );
 
         return;
 
     }
 
+
     closeCart();
 
-    document.getElementById("checkout")
+
+    document
+        .getElementById("checkout")
         .classList.add("show");
 
-    document.getElementById("checkout")
+
+    document
+        .getElementById("checkout")
         .scrollIntoView({
+
             behavior:"smooth"
+
         });
 
-}
+};
 
 
 /* WHATSAPP ORDER */
 
-function placeOrder(){
+window.placeOrder =
+function(){
 
     const name =
-        document.getElementById("customerName")
+        document
+        .getElementById("customerName")
         .value.trim();
+
 
     const phone =
-        document.getElementById("customerPhone")
+        document
+        .getElementById("customerPhone")
         .value.trim();
+
 
     const city =
-        document.getElementById("customerCity")
+        document
+        .getElementById("customerCity")
         .value.trim();
+
 
     const address =
-        document.getElementById("customerAddress")
+        document
+        .getElementById("customerAddress")
         .value.trim();
 
 
-    if(!name || !phone || !city || !address){
+    if(
+        !name ||
+        !phone ||
+        !city ||
+        !address
+    ){
 
-        alert("Please fill all customer details.");
+        alert(
+            "Please fill all customer details."
+        );
 
         return;
 
@@ -1034,59 +1281,78 @@ function placeOrder(){
     let orderText =
         "Zaree Collection Order\n\n";
 
-    orderText +=
-        "Name: " + name + "\n";
 
     orderText +=
-        "Phone: " + phone + "\n";
+        "Name: " +
+        name +
+        "\n";
+
 
     orderText +=
-        "City: " + city + "\n";
+        "Phone: " +
+        phone +
+        "\n";
+
 
     orderText +=
-        "Address: " + address + "\n\n";
+        "City: " +
+        city +
+        "\n";
+
+
+    orderText +=
+        "Address: " +
+        address +
+        "\n\n";
+
 
     orderText +=
         "Products:\n";
 
 
-    cart.forEach(function(item,index){
+    cart.forEach(
+        function(item,index){
 
-        orderText +=
-            (index + 1) +
-            ". " +
-            item.name +
-            " | " +
-            item.option +
-            " | Rs. " +
-            item.price +
-            "\n";
+            orderText +=
 
-    });
+                (index + 1) +
+                ". " +
+                item.name +
+                " | " +
+                item.option +
+                " | Rs. " +
+                item.price +
+                "\n";
+
+        }
+    );
 
 
     const total =
-        cart.reduce(function(sum,item){
+        cart.reduce(
+            function(sum,item){
 
-            return sum + item.price;
+                return sum +
+                    Number(item.price || 0);
 
-        },0);
+            },
+            0
+        );
 
 
     orderText +=
-        "\nTotal: Rs. " + total;
+        "\nTotal: Rs. " +
+        total;
 
 
-    /*
-      WhatsApp number:
-      03047041769
-    */
+    /* YOUR WHATSAPP NUMBER */
 
     const whatsappNumber =
-        "923047041769";
+        "923249689534";
 
 
     const whatsappURL =
+
         "https://wa.me/" +
         whatsappNumber +
         "?text=" +
@@ -1098,42 +1364,42 @@ function placeOrder(){
         "_blank"
     );
 
-}
+};
 
 
 /* CATEGORY FILTER */
 
-function filterProducts(category){
+window.filterProducts =
+function(category){
 
-    const products =
-        document.querySelectorAll(".product");
-
-
-    products.forEach(function(product){
-
-        if(
-            product.dataset.category === category
-        ){
-
-            product.style.display = "block";
-
-        }else{
-
-            product.style.display = "none";
-
-        }
-
-    });
+    const filtered =
+        allProducts.filter(
+            product =>
+                product.category === category
+        );
 
 
-    document.getElementById("products")
+    displayProducts(filtered);
+
+
+    document
+        .getElementById("products")
         .scrollIntoView({
+
             behavior:"smooth"
+
         });
 
-}
+};
+
+
+/* START */
+
+loadProducts();
+
+updateCart();
 
 </script>
 
 </body>
-  </html>
+</html>
